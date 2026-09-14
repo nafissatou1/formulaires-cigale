@@ -9,13 +9,18 @@
     :root {
       --bg-primary: #FAFAF8;
       --bg-secondary: #F0F0EA;
-      --text-primary: #1A1A18;
+      --text-primary: #2A2A28;
       --text-secondary: #666661;
       --border-color: #E8E8E3;
+      --status-good: #2D7A4A;
+      --status-warning: #B8860B;
+      --status-critical: #8B5A3C;
+      --status-neutral: #666661;
       --phase1: #2D7A4A;
       --phase2: #B8860B;
       --phase3: #5B7C99;
       --accent-light: #F5F5F0;
+      --accent-dark: #2A2A28;
       --focus: #4A9E5A;
     }
 
@@ -26,10 +31,14 @@
         --text-primary: #F5F5F0;
         --text-secondary: #B8B8B0;
         --border-color: #3A3930;
+        --status-good: #5FB876;
+        --status-warning: #D4A041;
+        --status-critical: #B8755A;
         --phase1: #5FB876;
         --phase2: #D4A041;
         --phase3: #7BA3C8;
         --accent-light: #2A2925;
+        --accent-dark: #F5F5F0;
         --focus: #4FCF68;
       }
     }
@@ -40,10 +49,14 @@
       --text-primary: #F5F5F0;
       --text-secondary: #B8B8B0;
       --border-color: #3A3930;
+      --status-good: #5FB876;
+      --status-warning: #D4A041;
+      --status-critical: #B8755A;
       --phase1: #5FB876;
       --phase2: #D4A041;
       --phase3: #7BA3C8;
       --accent-light: #2A2925;
+      --accent-dark: #F5F5F0;
       --focus: #4FCF68;
     }
 
@@ -70,38 +83,69 @@
     header {
       margin-bottom: 32px;
       text-align: center;
-      padding-bottom: 24px;
-      border-bottom: 2px solid var(--border-color);
+      padding: 24px;
+      background: linear-gradient(135deg, #2D7A4A 0%, #1F5A38 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      box-shadow: 0 4px 12px rgba(45, 122, 74, 0.15);
+    }
+
+    .header-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+    }
+
+    .header-content {
+      text-align: left;
+    }
+
+    header h1 {
+      color: white;
+      font-size: 32px;
+      margin: 0;
+    }
+
+    header .header-subtitle {
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 500;
     }
 
     h1 {
-      font-size: 32px;
+      font-size: 36px;
       font-weight: 700;
       margin-bottom: 8px;
+      color: var(--accent-dark);
+      letter-spacing: -0.5px;
     }
 
     .header-subtitle {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--text-secondary);
       font-weight: 500;
+      letter-spacing: 0.3px;
     }
 
     /* Workflow Diagram */
     .workflow-container {
       margin: 32px 0;
       padding: 24px;
-      background: var(--accent-light);
-      border-radius: 8px;
-      border: 1px solid var(--border-color);
+      background: linear-gradient(to bottom, rgba(45, 122, 74, 0.05), rgba(91, 124, 153, 0.05));
+      border-radius: 12px;
+      border: 2px solid var(--phase1);
     }
 
     .workflow-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--phase1);
+      text-transform: none;
+      letter-spacing: 0px;
       margin-bottom: 16px;
+      text-align: center;
     }
 
     .workflow {
@@ -115,44 +159,52 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      gap: 6px;
       min-width: 140px;
-      padding: 12px;
-      border-radius: 6px;
-      background: var(--bg-primary);
-      border: 1px solid var(--border-color);
+      padding: 16px 12px;
+      border-radius: 10px;
+      background: white;
+      border: 2px solid var(--border-color);
       text-align: center;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.3s;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
 
     .workflow-step:hover {
-      transform: translateY(-2px);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(45, 122, 74, 0.12);
       border-color: var(--phase1);
     }
 
     .workflow-step.phase1 {
-      border-left: 4px solid var(--phase1);
+      border-top: 4px solid var(--status-good);
+      border-left: 2px solid var(--border-color);
     }
 
     .workflow-step.phase2 {
-      border-left: 4px solid var(--phase2);
+      border-top: 4px solid var(--status-warning);
+      border-left: 2px solid var(--border-color);
     }
 
     .workflow-step.phase3 {
-      border-left: 4px solid var(--phase3);
+      border-top: 4px solid var(--status-critical);
+      border-left: 2px solid var(--border-color);
     }
 
     .step-number {
       font-weight: 700;
-      font-size: 18px;
-      color: var(--text-primary);
+      font-size: 24px;
+      color: var(--phase1);
+      line-height: 1;
     }
 
     .step-name {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
     }
 
     .step-status {
@@ -194,31 +246,27 @@
       border: none;
       background: transparent;
       color: var(--text-secondary);
-      font-weight: 500;
+      font-weight: 600;
       font-size: 14px;
       cursor: pointer;
       border-bottom: 3px solid transparent;
-      transition: all 0.2s;
+      transition: all 0.3s;
       white-space: nowrap;
       font-family: 'Inter', sans-serif;
+      position: relative;
     }
 
     .tab-button:hover {
-      color: var(--text-primary);
+      color: var(--phase1);
+      background: rgba(45, 122, 74, 0.05);
     }
 
     .tab-button.active {
-      color: var(--text-primary);
+      color: var(--phase1);
       border-bottom-color: var(--phase1);
+      font-weight: 700;
     }
 
-    .tab-button.phase2-tab.active {
-      border-bottom-color: var(--phase2);
-    }
-
-    .tab-button.phase3-tab.active {
-      border-bottom-color: var(--phase3);
-    }
 
     .tab-content {
       display: none;
@@ -240,30 +288,39 @@
     }
 
     .form-title {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 700;
       margin-bottom: 6px;
+      color: var(--accent-dark);
     }
 
     .form-description {
       font-size: 14px;
       color: var(--text-secondary);
+      font-weight: 400;
     }
 
     .section {
       margin-bottom: 28px;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
 
     .section-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--phase1);
+      text-transform: none;
+      letter-spacing: 0px;
       margin-bottom: 16px;
       display: flex;
       align-items: center;
       gap: 8px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--phase1);
     }
 
     .form-group {
@@ -289,12 +346,21 @@
     select,
     textarea {
       padding: 10px 12px;
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
       font-family: 'Inter', sans-serif;
       font-size: 14px;
-      background: var(--bg-primary);
+      background: white;
       color: var(--text-primary);
+      transition: all 0.2s;
+    }
+
+    input[type="text"]:hover,
+    input[type="date"]:hover,
+    input[type="number"]:hover,
+    select:hover,
+    textarea:hover {
+      border-color: var(--phase1);
     }
 
     input[type="text"]:focus,
@@ -303,8 +369,8 @@
     select:focus,
     textarea:focus {
       outline: none;
-      border-color: var(--focus);
-      box-shadow: 0 0 0 3px rgba(74, 158, 90, 0.1);
+      border-color: var(--phase1);
+      box-shadow: 0 0 0 4px rgba(45, 122, 74, 0.1);
     }
 
     .two-column {
@@ -381,7 +447,262 @@
       border-left-color: var(--phase3);
     }
 
+    /* Progress Indicator */
+    .form-progress {
+      margin-bottom: 24px;
+      padding: 16px;
+      background: var(--accent-light);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: var(--border-color);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--phase1) 0%, var(--focus) 100%);
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Collapsible Sections */
+    .section-collapsible {
+      border: 2px solid var(--border-color);
+      border-radius: 10px;
+      background: white;
+      overflow: hidden;
+      margin-bottom: 20px;
+      transition: all 0.3s;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .section-collapsible:hover {
+      border-color: var(--phase1);
+      box-shadow: 0 4px 12px rgba(45, 122, 74, 0.08);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      background: linear-gradient(to right, rgba(14, 165, 233, 0.04), transparent);
+      cursor: pointer;
+      transition: background 0.2s;
+      user-select: none;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-header:hover {
+      background: linear-gradient(to right, rgba(14, 165, 233, 0.08), transparent);
+    }
+
+    .section-header-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-size: 15px;
+    }
+
+    .section-toggle {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+      color: var(--text-secondary);
+    }
+
+    .section-toggle.collapsed {
+      transform: rotate(-90deg);
+    }
+
+    .section-content {
+      padding: 16px;
+      display: block;
+      max-height: 2000px;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      opacity: 1;
+    }
+
+    .section-content.collapsed {
+      display: none;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
+
+    /* Validation Feedback */
+    .form-group.has-error input,
+    .form-group.has-error select {
+      border-color: #B84C4C;
+      background: rgba(184, 76, 76, 0.05);
+    }
+
+    .form-group.has-success input,
+    .form-group.has-success select {
+      border-color: var(--phase1);
+      background: rgba(45, 122, 74, 0.05);
+    }
+
+    .validation-message {
+      font-size: 12px;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0 4px;
+    }
+
+    .validation-message.error {
+      color: #B84C4C;
+    }
+
+    .validation-message.success {
+      color: var(--phase1);
+    }
+
+    .validation-message.warning {
+      color: var(--phase2);
+    }
+
+    /* Decision Cards */
+    .decision-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 0;
+    }
+
+    .decision-card {
+      position: relative;
+      padding: 20px 16px;
+      border: 2px solid var(--border-color);
+      border-radius: 10px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .decision-card:hover {
+      border-color: var(--phase1);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(45, 122, 74, 0.12);
+    }
+
+    .decision-card input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .decision-card input[type="radio"]:checked + .card-content {
+      color: white;
+    }
+
+    .decision-card input[type="radio"]:checked ~ .card-background {
+      display: block;
+    }
+
+    .card-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 6px;
+      z-index: -1;
+      display: none;
+    }
+
+    .decision-card.accept input[type="radio"]:checked ~ .card-background {
+      background: var(--phase1);
+    }
+
+    .decision-card.warning input[type="radio"]:checked ~ .card-background {
+      background: var(--phase2);
+    }
+
+    .decision-card.reject input[type="radio"]:checked ~ .card-background {
+      background: #B84C4C;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 1;
+      font-weight: 600;
+    }
+
+    .card-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .card-label {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .card-description {
+      font-size: 12px;
+      margin-top: 6px;
+      opacity: 0.8;
+    }
+
+    .decision-card input[type="radio"]:checked + .card-content .card-description {
+      color: white;
+    }
+
+    /* Button Styles */
+    button {
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+
+    button:not([onclick]) {
+      padding: 10px 16px;
+      border: none;
+      font-size: 14px;
+    }
+
+    /* Decision Section - Always Visible */
+    .section-collapsible.always-visible {
+      border-width: 2px;
+      border-color: var(--phase1);
+      background: rgba(45, 122, 74, 0.05);
+    }
+
+    .section-collapsible.always-visible .section-header {
+      background: rgba(45, 122, 74, 0.1);
+    }
+
     @media (max-width: 768px) {
+      .decision-cards {
+        grid-template-columns: 1fr;
+      }
+
       .workflow {
         flex-wrap: wrap;
       }
@@ -397,171 +718,572 @@
       h1 {
         font-size: 24px;
       }
+
+      header {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+
+      .header-logo {
+        width: 60px;
+        height: 60px;
+      }
+
+      .header-content {
+        text-align: center;
+      }
+
+      header h1 {
+        font-size: 24px;
+      }
+
+      .section {
+        padding: 16px;
+      }
+
+      .form-container {
+        max-width: 100%;
+      }
+
+      input[type="text"],
+      input[type="date"],
+      input[type="number"],
+      select,
+      textarea {
+        min-height: 44px;
+        font-size: 16px;
+      }
+
+      .tab-button {
+        padding: 10px 12px;
+        font-size: 12px;
+      }
+
+      .workflow-step {
+        min-width: 120px;
+        padding: 12px;
+      }
+
+      .step-number {
+        font-size: 20px;
+      }
+
+      .step-name {
+        font-size: 11px;
+      }
+
+      .section-title {
+        font-size: 16px;
+      }
+
+      .form-title {
+        font-size: 22px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>Système de Formulaires CIGAL</h1>
-      <p class="header-subtitle">Tous les Points Critiques de Contrôle (CCPs) – Production de Farine Infantile</p>
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='95' fill='%23F5F5F0' stroke='%232D7A4A' stroke-width='2'/%3E%3Ctext x='100' y='110' font-size='48' font-weight='bold' text-anchor='middle' fill='%238B6239'%3ECigal%3C/text%3E%3C/svg%3E" alt="CIGAL Logo" class="header-logo">
+      <div class="header-content">
+        <h1>Système de Formulaires CIGAL</h1>
+        <p class="header-subtitle">Tous les Points Critiques de Contrôle (CCPs) – Production de Farine Infantile</p>
+      </div>
     </header>
 
     <!-- Workflow Diagram -->
     <div class="workflow-container">
       <div class="workflow-title">📊 Flux de Production</div>
       <div class="workflow">
-        <div class="workflow-step phase1" onclick="switchTab('ccp1')">
+        <div class="workflow-step phase1" >
           <div class="step-number">1</div>
           <div class="step-name">Réception</div>
-          <div class="step-status status-ready">Phase 1</div>
         </div>
-        <div class="workflow-step phase2" onclick="switchTab('ccp2')">
+        <div class="workflow-step phase1" >
           <div class="step-number">2</div>
           <div class="step-name">Torréfaction</div>
-          <div class="step-status status-pending">Phase 2</div>
         </div>
-        <div class="workflow-step phase2" onclick="switchTab('ccp3')">
+        <div class="workflow-step phase1" >
           <div class="step-number">3</div>
           <div class="step-name">Refroidissement</div>
-          <div class="step-status status-pending">Phase 2</div>
         </div>
-        <div class="workflow-step phase1" onclick="switchTab('ccp4')">
+        <div class="workflow-step phase1" >
           <div class="step-number">4</div>
           <div class="step-name">Mélange</div>
-          <div class="step-status status-ready">Phase 1</div>
         </div>
-        <div class="workflow-step phase3" onclick="switchTab('ccp5')">
+        <div class="workflow-step phase3" >
           <div class="step-number">5</div>
           <div class="step-name">Mouture</div>
-          <div class="step-status status-future">Phase 3</div>
         </div>
-        <div class="workflow-step phase3" onclick="switchTab('ccp6')">
+        <div class="workflow-step phase3" >
           <div class="step-number">6</div>
           <div class="step-name">Tamisage</div>
-          <div class="step-status status-future">Phase 3</div>
         </div>
-        <div class="workflow-step phase1" onclick="switchTab('ccp7')">
+        <div class="workflow-step phase1" >
           <div class="step-number">7</div>
           <div class="step-name">Conditionnement</div>
-          <div class="step-status status-ready">Phase 1</div>
         </div>
       </div>
     </div>
 
     <!-- Tabs Navigation -->
     <div class="tabs-nav">
-      <button class="tab-button active" onclick="switchTab('ccp1')">CCP1 – Réception</button>
-      <button class="tab-button phase2-tab" onclick="switchTab('ccp2')">CCP2 – Torréfaction</button>
-      <button class="tab-button phase2-tab" onclick="switchTab('ccp3')">CCP3 – Refroidissement</button>
-      <button class="tab-button active" onclick="switchTab('ccp4')">CCP4 – Mélange</button>
-      <button class="tab-button phase3-tab" onclick="switchTab('ccp5')">CCP5 – Mouture</button>
-      <button class="tab-button phase3-tab" onclick="switchTab('ccp6')">CCP6 – Tamisage</button>
-      <button class="tab-button active" onclick="switchTab('ccp7')">CCP7 – Conditionnement</button>
+      <button class="tab-button" onclick="switchTab('dashboard')">📊 Tableau de Bord</button>
+      <button class="tab-button active" onclick="switchTab('ccp1')">Réception</button>
+      <button class="tab-button" onclick="switchTab('suppliers')">📋 Fournisseurs</button>
+      <button class="tab-button" onclick="switchTab('ccp2')">Torréfaction</button>
+      <button class="tab-button" onclick="switchTab('ccp3')">Refroidissement</button>
+      <button class="tab-button" onclick="switchTab('ccp4')">Mélange</button>
+      <button class="tab-button" onclick="switchTab('ccp5')">Mouture</button>
+      <button class="tab-button" onclick="switchTab('ccp6')">Tamisage</button>
+      <button class="tab-button" onclick="switchTab('ccp7')">Conditionnement</button>
+    </div>
+
+    <!-- Dashboard: Manager/CEO View -->
+    <div id="dashboard" class="tab-content">
+      <div class="form-container" style="max-width: 100%;">
+        <div class="form-header">
+          <h2 class="form-title">📊 Tableau de Bord Production</h2>
+          <p class="form-description">Vue d'ensemble qualité et performance en temps réel. Dernière mise à jour: <span id="dashboard-timestamp">--:--</span></p>
+        </div>
+
+        <!-- PHASE 2: STATUS OVERVIEW - Visual CCP Status at a Glance (Under 30 seconds) -->
+        <div class="section">
+          <div class="section-title">🎯 STATUT DE CHAQUE ÉTAPE DE CONTRÔLE</div>
+          <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">État actuel des 7 étapes de contrôle. Vert = bon | Ambre = à vérifier | Rouge = action requise</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 24px;">
+            <!-- CCP1 Status Card -->
+            <div id="ccp1-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #2D7A4A; text-align: center;">
+              <div style="font-size: 24px; margin-bottom: 8px;">📦</div>
+              <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px;">Réception</div>
+              <div style="font-size: 13px; font-weight: 700; color: #2D7A4A;">● EN LIGNE</div>
+              <div style="font-size: 11px; color: var(--text-secondary); margin-top: 8px;" id="ccp1-last-submission">--</div>
+            </div>
+
+            <!-- CCP2 Status Card -->
+            <div id="ccp2-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #2D7A4A; text-align: center; cursor: pointer;" >
+              <div style="font-size: 24px; margin-bottom: 8px;">🔥</div>
+              <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px;">Torréfaction</div>
+              <div style="font-size: 13px; font-weight: 700; color: #2D7A4A;">● EN LIGNE</div>
+              <div style="font-size: 11px; color: var(--text-secondary); margin-top: 8px;" id="ccp2-last-submission">--</div>
+            </div>
+
+            <!-- CCP3 Status Card -->
+            <div id="ccp3-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #2D7A4A; text-align: center; cursor: pointer;" >
+              <div style="font-size: 24px; margin-bottom: 8px;">❄️</div>
+              <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px;">Refroidissement</div>
+              <div style="font-size: 13px; font-weight: 700; color: #2D7A4A;">● EN LIGNE</div>
+              <div style="font-size: 11px; color: var(--text-secondary); margin-top: 8px;" id="ccp3-last-submission">--</div>
+            </div>
+
+            <!-- CCP4 Status Card -->
+            <div id="ccp4-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #2D7A4A; text-align: center; cursor: pointer;" >
+              <div style="font-size: 24px; margin-bottom: 8px;">🥄</div>
+              <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px;">Mélange</div>
+              <div style="font-size: 13px; font-weight: 700; color: #2D7A4A;">● EN LIGNE</div>
+              <div style="font-size: 11px; color: var(--text-secondary); margin-top: 8px;" id="ccp4-last-submission">--</div>
+            </div>
+
+            <!-- CCP5 Status Card -->
+            <div id="ccp5-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #B8860B; text-align: center; cursor: pointer;" >
+              <div style="font-size: 24px; margin-bottom: 8px;">⚙️</div>
+              <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px;">Mouture</div>
+              <div style="font-size: 13px; font-weight: 700; color: #B8860B;">● PRÊT</div>
+              <div style="font-size: 11px; color: var(--text-secondary); margin-top: 8px;">Phase 1</div>
+            </div>
+
+            <!-- CCP6 Status Card -->
+            <div id="ccp6-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #B8860B; text-align: center; cursor: pointer;" >
+              <div style="font-size: 24px; margin-bottom: 8px;">🔍</div>
+              <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px;">Tamisage</div>
+              <div style="font-size: 13px; font-weight: 700; color: #B8860B;">● PRÊT</div>
+              <div style="font-size: 11px; color: var(--text-secondary); margin-top: 8px;">Phase 1</div>
+            </div>
+
+            <!-- CCP7 Status Card -->
+            <div id="ccp7-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #2D7A4A; text-align: center; cursor: pointer;" >
+              <div style="font-size: 24px; margin-bottom: 8px;">📮</div>
+              <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px;">Conditionnement</div>
+              <div style="font-size: 13px; font-weight: 700; color: #2D7A4A;">● EN LIGNE</div>
+              <div style="font-size: 11px; color: var(--text-secondary); margin-top: 8px;" id="ccp7-last-submission">--</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PHASE 2: CRITICAL ALERTS - Visual Hierarchy with Red on Top -->
+        <div class="section">
+          <div class="section-title">🚨 ALERTES CRITIQUES</div>
+          <div id="critical-alerts-phase2" style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="padding: 12px 16px; background: rgba(184, 76, 76, 0.1); border-left: 4px solid #B84C4C; border-radius: 4px;">
+              <div style="font-weight: 600; color: #B84C4C; font-size: 13px;">✓ Aucune alerte critique</div>
+              <div style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">Tous les lots en conformité. Bonne qualité!</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PHASE 2: QUALITY PERFORMANCE - Visual Bars Instead of Percentages -->
+        <div class="section">
+          <div class="section-title">📊 PERFORMANCE QUALITÉ PAR ÉTAPE</div>
+          <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">Taux de conformité des 7 derniers contrôles. Cible: ≥95% ✓ CONFORME</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            <!-- CCP1 Performance -->
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 13px; font-weight: 600;">CCP1 – Réception</span>
+                <span style="font-size: 13px; font-weight: 700; color: #2D7A4A;" id="ccp1-perf-pct">--</span>
+              </div>
+              <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
+                <div id="ccp1-perf-bar" style="height: 100%; background: #2D7A4A; width: 0%; transition: width 0.3s ease;"></div>
+              </div>
+              <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;" id="ccp1-perf-text">Aucune donnée</div>
+            </div>
+
+            <!-- CCP2 Performance -->
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 13px; font-weight: 600;">CCP2 – Torréfaction</span>
+                <span style="font-size: 13px; font-weight: 700; color: #2D7A4A;" id="ccp2-perf-pct">--</span>
+              </div>
+              <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
+                <div id="ccp2-perf-bar" style="height: 100%; background: #2D7A4A; width: 0%; transition: width 0.3s ease;"></div>
+              </div>
+              <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;" id="ccp2-perf-text">Aucune donnée</div>
+            </div>
+
+            <!-- CCP3 Performance -->
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 13px; font-weight: 600;">CCP3 – Refroidissement</span>
+                <span style="font-size: 13px; font-weight: 700; color: #2D7A4A;" id="ccp3-perf-pct">--</span>
+              </div>
+              <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
+                <div id="ccp3-perf-bar" style="height: 100%; background: #2D7A4A; width: 0%; transition: width 0.3s ease;"></div>
+              </div>
+              <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;" id="ccp3-perf-text">Aucune donnée</div>
+            </div>
+
+            <!-- CCP4 Performance -->
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 13px; font-weight: 600;">CCP4 – Mélange</span>
+                <span style="font-size: 13px; font-weight: 700; color: #2D7A4A;" id="ccp4-perf-pct">--</span>
+              </div>
+              <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
+                <div id="ccp4-perf-bar" style="height: 100%; background: #2D7A4A; width: 0%; transition: width 0.3s ease;"></div>
+              </div>
+              <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;" id="ccp4-perf-text">Aucune donnée</div>
+            </div>
+
+            <!-- CCP7 Performance -->
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 13px; font-weight: 600;">CCP7 – Conditionnement</span>
+                <span style="font-size: 13px; font-weight: 700; color: #2D7A4A;" id="ccp7-perf-pct">--</span>
+              </div>
+              <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
+                <div id="ccp7-perf-bar" style="height: 100%; background: #2D7A4A; width: 0%; transition: width 0.3s ease;"></div>
+              </div>
+              <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;" id="ccp7-perf-text">Aucune donnée</div>
+            </div>
+
+            <!-- Overall Performance -->
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <span style="font-size: 13px; font-weight: 600;">Conformité Globale</span>
+                <span style="font-size: 13px; font-weight: 700; color: #2D7A4A;" id="overall-perf-pct">--</span>
+              </div>
+              <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
+                <div id="overall-perf-bar" style="height: 100%; background: #2D7A4A; width: 0%; transition: width 0.3s ease;"></div>
+              </div>
+              <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;" id="overall-perf-text">Aucune donnée</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PHASE 2: SUPPLIER RELIABILITY - Status Badges -->
+        <div class="section">
+          <div class="section-title">🤝 FIABILITÉ DES FOURNISSEURS</div>
+          <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">Performance et fiabilité des fournisseurs (derniers 10 livraisons)</p>
+          <div id="supplier-reliability-phase2" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+            <div style="padding: 12px; background: var(--accent-light); border-radius: 8px; border-left: 4px solid var(--border-color);">
+              <div style="color: var(--text-secondary); font-size: 12px;">Aucun fournisseur enregistré.</div>
+              <a onclick="switchTab('suppliers')" style="color: var(--phase1); cursor: pointer; font-size: 12px; font-weight: 600;">Gérer les fournisseurs →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          ℹ️ <strong>Comment utiliser ce tableau de bord :</strong> (1) Vérifiez d'abord les ALERTES CRITIQUES (rouge), (2) Consultez le STATUT DE CHAQUE ÉTAPE (vert/ambre), (3) Analysez la PERFORMANCE QUALITÉ pour identifier les tendances, (4) Évaluez la FIABILITÉ DES FOURNISSEURS pour les actions d'approvisionnement.
+        </div>
+      </div>
     </div>
 
     <!-- CCP1: Reception -->
     <div id="ccp1" class="tab-content active">
       <div class="form-container">
         <div class="form-header">
-          <div class="phase-badge phase1-badge">🚀 Phase 1 – Prêt à l'implémentation</div>
-          <h2 class="form-title">CCP1 – Réception Matières Premières</h2>
+          <h2 class="form-title">Réception Matières Premières</h2>
           <p class="form-description">Contrôle d'entrée des matières premières. Équipe qualité. À faire à chaque réception.</p>
         </div>
 
+        <!-- Form Progress -->
+        <div class="form-progress">
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="ccp1-progress-bar" style="width: 0%"></div>
+          </div>
+          <div class="progress-text">
+            <span>Progression du formulaire</span>
+            <span id="ccp1-progress-text">0%</span>
+          </div>
+        </div>
+
+        <!-- Collapsible Section: Delivery Info -->
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>📦 Informations de Livraison (Obligatoire)</span>
+            </div>
+            <div class="section-toggle">▼</div>
+          </div>
+          <div class="section-content">
+            <div class="form-group">
+              <label>Date de réception <span class="label-required">*</span></label>
+              <input type="date" id="ccp1-date" onchange="validateCCP1Field(this); updateCCP1Progress();">
+            </div>
+            <div class="two-column">
+              <div class="form-group">
+                <label>Fournisseur <span class="label-required">*</span></label>
+                <select id="ccp1-supplier" onchange="validateCCP1Field(this); updateCCP1Progress();">
+                  <option value="">-- Sélectionner un fournisseur --</option>
+                </select>
+                <small style="color: var(--text-secondary); margin-top: 4px; display: block;">
+                  <a onclick="switchTab('suppliers')" style="color: var(--phase1); text-decoration: none; cursor: pointer;">Gérer les fournisseurs →</a>
+                </small>
+              </div>
+              <div class="form-group">
+                <label>Produit <span class="label-required">*</span></label>
+                <select id="ccp1-product" onchange="onCCP1ProductChange(); validateCCP1Field(this); updateCCP1Progress();">
+                  <option selected>Farine</option>
+                  <option>Lait en poudre</option>
+                  <option>Sucre</option>
+                  <option>Huile de palme</option>
+                  <option>Pâte d'arachide</option>
+                  <option>Pots en plastique alimentaire</option>
+                </select>
+              </div>
+            </div>
+            <div class="two-column">
+              <div class="form-group">
+                <label id="ccp1-qty-label">Quantité (kg) <span class="label-required">*</span></label>
+                <input type="text" id="ccp1-quantity" onchange="validateCCP1Field(this); updateCCP1Progress();">
+              </div>
+              <div class="form-group">
+                <label>N° Lot <span class="label-required">*</span></label>
+                <input type="text" id="ccp1-lot" onchange="validateCCP1Field(this); updateCCP1Progress();">
+              </div>
+            </div>
+            <div class="two-column">
+              <div class="form-group" id="ccp1-fabrication-group">
+                <label id="ccp1-fabrication-label">Date de fabrication <span class="label-required">*</span></label>
+                <input type="date" id="ccp1-fabrication" onchange="validateCCP1Field(this); updateCCP1Progress();">
+              </div>
+              <div class="form-group" id="ccp1-expiry-group">
+                <label id="ccp1-expiry-label">Date d'expiration (DLC) <span class="label-required">*</span></label>
+                <input type="date" id="ccp1-expiry" onchange="validateCCP1Field(this); updateCCP1Progress();">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Collapsible Section: Visual Controls -->
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>✓ Contrôles Visuels</span>
+            </div>
+            <div class="section-toggle">▼</div>
+          </div>
+          <div class="section-content">
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP1Progress();">
+                <span class="checkbox-label">Sac/conteneur intact</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP1Progress();">
+                <span class="checkbox-label">Étiquette lisible et correcte</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP1Progress();">
+                <span class="checkbox-label">Pas de moisissure ou décoloration</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP1Progress();">
+                <span class="checkbox-label">Pas de dégâts d'insectes</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP1Progress();">
+                <span class="checkbox-label">Pas de corps étrangers</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP1Progress();">
+                <span class="checkbox-label">Odeur acceptable</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Collapsible Section: Pot Controls -->
+        <div class="section-collapsible" id="ccp1-pots-section" style="display: none;">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>🏺 Contrôles Spécifiques – Pots en Plastique</span>
+            </div>
+            <div class="section-toggle">▼</div>
+          </div>
+          <div class="section-content">
+            <div class="info-box">
+              À remplir UNIQUEMENT si le produit reçu est "Pots en plastique alimentaire"
+            </div>
+            <div class="form-group">
+              <label>Quantité reçue (nombre de pots) <span class="label-required">*</span></label>
+              <input type="text" placeholder="ex: 5000" onchange="updateCCP1Progress();">
+            </div>
+            <div class="form-group">
+              <label>Zone de stockage <span class="label-required">*</span></label>
+              <input type="text" placeholder="ex: Entrepôt A - Étagère 3" onchange="updateCCP1Progress();">
+            </div>
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP1Progress();">
+                <span class="checkbox-label">Pots en bon état (pas de fissures/déformation)</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP1Progress();">
+                <span class="checkbox-label">Pas de débris/poussière à l'intérieur</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP1Progress();">
+                <span class="checkbox-label">Fermeture/couvercle intact</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP1Progress();">
+                <span class="checkbox-label">Emballage de transport intact</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decision Section - Always Visible -->
+        <div class="section-collapsible always-visible">
+          <div class="section-header" style="cursor: default;">
+            <div class="section-header-title">
+              <span>🎯 DÉCISION – Choisir Une Action</span>
+            </div>
+          </div>
+          <div class="section-content" style="max-height: none;">
+            <div class="decision-cards">
+              <label class="decision-card accept">
+                <input type="radio" name="decision-ccp1" value="ACCEPTER">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">✓</div>
+                  <div class="card-label">ACCEPTER</div>
+                  <div class="card-description">Entreposer à: ______</div>
+                </div>
+              </label>
+              <label class="decision-card warning">
+                <input type="radio" name="decision-ccp1" value="QUARANTAINE">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">⚠️</div>
+                  <div class="card-label">QUARANTAINE</div>
+                  <div class="card-description">Raison: ______</div>
+                </div>
+              </label>
+              <label class="decision-card reject">
+                <input type="radio" name="decision-ccp1" value="REFUSER">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">✗</div>
+                  <div class="card-label">REFUSER</div>
+                  <div class="card-description">Raison: ______</div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Suppliers Management -->
+    <div id="suppliers" class="tab-content">
+      <div class="form-container">
+        <div class="form-header">
+          <h2 class="form-title">📋 Gestion des Fournisseurs</h2>
+          <p class="form-description">Ajouter, modifier et consulter la liste des fournisseurs de matières premières.</p>
+        </div>
+
         <div class="section">
-          <div class="section-title">📦 Informations de Livraison</div>
+          <div class="section-title">➕ Ajouter un Nouveau Fournisseur</div>
           <div class="form-group">
-            <label>Date de réception <span class="label-required">*</span></label>
-            <input type="date" value="2025-09-14">
+            <label>Nom du fournisseur <span class="label-required">*</span></label>
+            <input type="text" id="supplier-name" placeholder="ex: Moulin Sénégal">
           </div>
           <div class="two-column">
             <div class="form-group">
-              <label>Fournisseur <span class="label-required">*</span></label>
-              <select>
-                <option>Moulin Sénégal - Farine</option>
-                <option>Laiterie Dakar - Lait</option>
-                <option>Sucré & Co - Sucre</option>
-              </select>
+              <label>Personne de contact</label>
+              <input type="text" id="supplier-contact" placeholder="ex: Monsieur Sow">
             </div>
             <div class="form-group">
-              <label>Produit <span class="label-required">*</span></label>
-              <select>
-                <option selected>Farine</option>
-                <option>Lait en poudre</option>
-                <option>Sucre</option>
-                <option>Huile de palme</option>
-                <option>Pâte d'arachide</option>
-              </select>
+              <label>Téléphone <span class="label-required">*</span></label>
+              <input type="text" id="supplier-phone" placeholder="ex: +221 77 123 4567">
             </div>
           </div>
           <div class="two-column">
             <div class="form-group">
-              <label>Quantité (kg) <span class="label-required">*</span></label>
-              <input type="text" value="50">
+              <label>Email</label>
+              <input type="email" id="supplier-email" placeholder="ex: contact@moulin.sn">
             </div>
             <div class="form-group">
-              <label>N° Lot <span class="label-required">*</span></label>
-              <input type="text" value="FL-2025-0847">
+              <label>Adresse</label>
+              <input type="text" id="supplier-address" placeholder="ex: Dakar, Sénégal">
             </div>
           </div>
-          <div class="two-column">
-            <div class="form-group">
-              <label>Date de fabrication <span class="label-required">*</span></label>
-              <input type="date" value="2025-08-15">
-            </div>
-            <div class="form-group">
-              <label>Date d'expiration (DLC) <span class="label-required">*</span></label>
-              <input type="date" value="2025-11-15">
-            </div>
+          <div class="form-group">
+            <label>Produits fournis <span class="label-required">*</span></label>
+            <input type="text" id="supplier-products" placeholder="ex: Farine, Sucre">
+          </div>
+          <div style="margin-top: 16px;">
+            <button onclick="addSupplier()" style="padding: 10px 16px; background: var(--phase1); color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer;">Ajouter Fournisseur</button>
           </div>
         </div>
 
         <div class="section">
-          <div class="section-title">✓ Contrôles Visuels</div>
-          <div class="checkbox-group">
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Sac/conteneur intact</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Étiquette lisible et correcte</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Pas de moisissure ou décoloration</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Pas de dégâts d'insectes</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Pas de corps étrangers</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Odeur acceptable</span>
-            </label>
-          </div>
-        </div>
-
-        <div class="section">
-          <div class="section-title">🎯 Décision</div>
-          <div class="checkbox-group">
-            <label class="checkbox-item">
-              <input type="radio" name="decision-ccp1" checked>
-              <span class="checkbox-label"><strong>✓ ACCEPTER</strong> – Entreposer à: ______</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="radio" name="decision-ccp1">
-              <span class="checkbox-label"><strong>⚠️ QUARANTAINE</strong> – Raison: ______</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="radio" name="decision-ccp1">
-              <span class="checkbox-label"><strong>✗ REFUSER</strong> – Raison: ______</span>
-            </label>
+          <div class="section-title">📑 Liste des Fournisseurs</div>
+          <div id="suppliers-list" style="max-width: 100%; overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+              <thead>
+                <tr style="background: var(--accent-light); border-bottom: 2px solid var(--border-color);">
+                  <th style="padding: 10px; text-align: left; font-weight: 600;">Nom</th>
+                  <th style="padding: 10px; text-align: left; font-weight: 600;">Contact</th>
+                  <th style="padding: 10px; text-align: left; font-weight: 600;">Téléphone</th>
+                  <th style="padding: 10px; text-align: left; font-weight: 600;">Email</th>
+                  <th style="padding: 10px; text-align: left; font-weight: 600;">Produits</th>
+                  <th style="padding: 10px; text-align: center; font-weight: 600;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="suppliers-tbody">
+              </tbody>
+            </table>
+            <div id="suppliers-empty" style="padding: 20px; text-align: center; color: var(--text-secondary);">
+              Aucun fournisseur enregistré. Ajoutez-en un ci-dessus.
+            </div>
           </div>
         </div>
       </div>
@@ -571,89 +1293,156 @@
     <div id="ccp2" class="tab-content">
       <div class="form-container">
         <div class="form-header">
-          <div class="phase-badge phase2-badge">⏳ Phase 2 – Infrastructure en attente</div>
-          <h2 class="form-title">CCP2 – Torréfaction (Roasting)</h2>
-          <p class="form-description">Contrôle thermique pour inactivation de Salmonella. 100°C pendant 2 heures. Équipe production + QC.</p>
+          <h2 class="form-title">Torréfaction (Roasting)</h2>
+          <p class="form-description">Contrôle de la torréfaction par observation visuelle. Sécurité microbiologique. Équipe production + QC.</p>
+        </div>
+
+        <div class="form-progress">
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="ccp2-progress-bar" style="width: 0%"></div>
+          </div>
+          <div class="progress-text">
+            <span>Progression du formulaire</span>
+            <span id="ccp2-progress-text">0%</span>
+          </div>
         </div>
 
         <div class="info-box">
-          ℹ️ <strong>Status:</strong> En attente de la livraison du torrefacteur avec contrôle de température. Actuellement: fiche de suivi papier simple tenue par la production, vérifiée quotidiennement par l'équipe QC.
+          ℹ️ <strong>Actuellement :</strong> Machine à gaz sans thermomètre. Suivi par observation visuelle (couleur, odeur). Temps approximatif estimé par l'opérateur.
         </div>
 
-        <div class="section">
-          <div class="section-title">📦 Lots à Rôtir</div>
-          <div class="form-group">
-            <label>Date <span class="label-required">*</span></label>
-            <input type="date">
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>📦 Lot à Torréfier (Obligatoire)</span>
+            </div>
+            <div class="section-toggle">▼</div>
           </div>
-          <div class="two-column">
+          <div class="section-content">
             <div class="form-group">
-              <label>N° Lot farine reçue <span class="label-required">*</span></label>
-              <input type="text" placeholder="Lien vers CCP1">
+              <label>Date <span class="label-required">*</span></label>
+              <input type="date" id="ccp2-date" onchange="validateCCP2Field(this); updateCCP2Progress();">
+            </div>
+            <div class="two-column">
+              <div class="form-group">
+                <label>N° Lot farine reçue (CCP1) <span class="label-required">*</span></label>
+                <input type="text" id="ccp2-lot" placeholder="ex: FL-2025-0847" onchange="validateCCP2Field(this); updateCCP2Progress();">
+              </div>
+              <div class="form-group">
+                <label>Quantité (kg) <span class="label-required">*</span></label>
+                <input type="text" id="ccp2-quantity" onchange="validateCCP2Field(this); updateCCP2Progress();">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>👁️ Observation Visuelle de Torréfaction</span>
+            </div>
+            <div class="section-toggle">▼</div>
+          </div>
+          <div class="section-content">
+            <div class="info-box">
+              La farine doit devenir doré moyen à foncé (pas brûlée). Durée approximative : 18-25 minutes selon la machine et la charge.
             </div>
             <div class="form-group">
-              <label>Quantité (kg) <span class="label-required">*</span></label>
-              <input type="text">
+              <label>Heure début torréfaction <span class="label-required">*</span></label>
+              <input type="time" id="ccp2-start-time" onchange="validateCCP2Field(this); updateCCP2Progress();">
+            </div>
+            <div class="form-group">
+              <label>Heure fin (estimation par opérateur) <span class="label-required">*</span></label>
+              <input type="time" id="ccp2-end-time" onchange="validateCCP2Field(this); updateCCP2Progress();">
+            </div>
+            <div class="form-group">
+              <label>Couleur finale observée <span class="label-required">*</span></label>
+              <select id="ccp2-color" onchange="validateCCP2Field(this); updateCCP2Progress();">
+                <option value="">-- Sélectionner --</option>
+                <option>Doré clair (trop peu torréfié)</option>
+                <option selected>Doré moyen (bon)</option>
+                <option>Doré foncé (acceptable)</option>
+                <option>Brûlé (à rejeter)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Odeur <span class="label-required">*</span></label>
+              <select id="ccp2-smell" onchange="validateCCP2Field(this); updateCCP2Progress();">
+                <option value="">-- Sélectionner --</option>
+                <option>Bonne odeur de torréfaction</option>
+                <option selected>Odeur normale</option>
+                <option>Légère odeur de brûlé</option>
+                <option>Fortement brûlée</option>
+              </select>
             </div>
           </div>
         </div>
 
-        <div class="section">
-          <div class="section-title">🌡️ Paramètres de Torréfaction</div>
-          <div class="info-box">
-            Cible: <strong>150°C pendant 18-25 minutes</strong> (pour farine de blé)
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>✓ Contrôles d'Équipement</span>
+            </div>
+            <div class="section-toggle">▼</div>
           </div>
-          <div class="form-group">
-            <label>Température atteinte (°C) <span class="label-required">*</span></label>
-            <input type="number" value="150">
-          </div>
-          <div class="form-group">
-            <label>Temps total de torréfaction (minutes) <span class="label-required">*</span></label>
-            <input type="number" value="20">
-          </div>
-          <div class="form-group">
-            <label>Observation visuelle de couleur</label>
-            <select>
-              <option>Doré clair</option>
-              <option selected>Doré moyen</option>
-              <option>Doré foncé</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="section">
-          <div class="section-title">✓ Contrôles</div>
-          <div class="checkbox-group">
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Équipement propre avant utilisation</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Température maintenue stable</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Pas d'odeur de brûlé</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Décharge complète du tambour</span>
-            </label>
+          <div class="section-content">
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP2Progress();">
+                <span class="checkbox-label">Machine nettoyée avant utilisation</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP2Progress();">
+                <span class="checkbox-label">Pas de résidus du lot précédent</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP2Progress();">
+                <span class="checkbox-label">Machine fonctionne normalement (pas de bruit anormal)</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP2Progress();">
+                <span class="checkbox-label">Décharge complète et uniforme</span>
+              </label>
+            </div>
           </div>
         </div>
 
-        <div class="section">
-          <div class="section-title">🎯 Décision</div>
-          <div class="checkbox-group">
-            <label class="checkbox-item">
-              <input type="radio" name="decision-ccp2" checked>
-              <span class="checkbox-label"><strong>✓ CONFORME</strong> – Procéder au refroidissement</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="radio" name="decision-ccp2">
-              <span class="checkbox-label"><strong>✗ NON CONFORME</strong> – Lot à isoler, raison: ______</span>
-            </label>
+        <div class="section-collapsible always-visible">
+          <div class="section-header" style="cursor: default;">
+            <div class="section-header-title">
+              <span>🎯 DÉCISION – Choisir Une Action</span>
+            </div>
+          </div>
+          <div class="section-content" style="max-height: none;">
+            <div class="decision-cards">
+              <label class="decision-card accept">
+                <input type="radio" name="decision-ccp2" value="CONFORME">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">✓</div>
+                  <div class="card-label">CONFORME</div>
+                  <div class="card-description">Procéder au refroidissement</div>
+                </div>
+              </label>
+              <label class="decision-card warning">
+                <input type="radio" name="decision-ccp2" value="À VÉRIFIER">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">⚠️</div>
+                  <div class="card-label">À VÉRIFIER</div>
+                  <div class="card-description">Re-contrôler</div>
+                </div>
+              </label>
+              <label class="decision-card reject">
+                <input type="radio" name="decision-ccp2" value="REJETÉ">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">✗</div>
+                  <div class="card-label">REJETÉ</div>
+                  <div class="card-description">Lot à isoler</div>
+                </div>
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -663,60 +1452,160 @@
     <div id="ccp3" class="tab-content">
       <div class="form-container">
         <div class="form-header">
-          <div class="phase-badge phase2-badge">⏳ Phase 2 – À planifier</div>
-          <h2 class="form-title">CCP3 – Refroidissement</h2>
-          <p class="form-description">Contrôle du temps et de la température de refroidissement. Protection contre la contamination aérienne. Équipe production.</p>
+          <h2 class="form-title">Refroidissement</h2>
+          <p class="form-description">Contrôle du refroidissement par machine à rotation. Protection contre la contamination aérienne. Équipe production.</p>
+        </div>
+
+        <div class="form-progress">
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="ccp3-progress-bar" style="width: 0%"></div>
+          </div>
+          <div class="progress-text">
+            <span>Progression du formulaire</span>
+            <span id="ccp3-progress-text">0%</span>
+          </div>
         </div>
 
         <div class="info-box">
-          ℹ️ <strong>Status:</strong> À intégrer après stabilisation du CCP2. Formule prévue: fiche de suivi simple avec chronomètre et mesure de température/humidité par QC.
+          ℹ️ <strong>Actuellement :</strong> Machine à rotation qui tourne le produit pour le refroidir. Temps estimé : 20-30 minutes. Observation visuelle de l'état du produit.
         </div>
 
-        <div class="section">
-          <div class="section-title">📦 Lot en Refroidissement</div>
-          <div class="form-group">
-            <label>N° Lot torréfié <span class="label-required">*</span></label>
-            <input type="text" placeholder="Lien vers CCP2">
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>📦 Lot en Refroidissement (Obligatoire)</span>
+            </div>
+            <div class="section-toggle">▼</div>
           </div>
-          <div class="two-column">
+          <div class="section-content">
             <div class="form-group">
-              <label>Heure début refroidissement</label>
-              <input type="text" placeholder="HH:MM">
+              <label>Date <span class="label-required">*</span></label>
+              <input type="date" id="ccp3-date" onchange="validateCCP3Field(this); updateCCP3Progress();">
             </div>
             <div class="form-group">
-              <label>Heure fin (≤30 min attendu)</label>
-              <input type="text" placeholder="HH:MM">
+              <label>N° Lot torréfié (CCP2) <span class="label-required">*</span></label>
+              <input type="text" id="ccp3-lot" placeholder="ex: PROD-2025-0847" onchange="validateCCP3Field(this); updateCCP3Progress();">
             </div>
           </div>
         </div>
 
-        <div class="section">
-          <div class="section-title">🌡️ Paramètres Observés</div>
-          <div class="form-group">
-            <label>Température finales (°C, < 25°C)</label>
-            <input type="number">
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>⏱️ Temps de Refroidissement</span>
+            </div>
+            <div class="section-toggle">▼</div>
           </div>
-          <div class="form-group">
-            <label>Humidité relative approximative (%)</label>
-            <input type="number">
+          <div class="section-content">
+            <div class="form-group">
+              <label>Heure début refroidissement <span class="label-required">*</span></label>
+              <input type="time" id="ccp3-start-time" onchange="validateCCP3Field(this); updateCCP3Progress();">
+            </div>
+            <div class="form-group">
+              <label>Heure fin (estimation) <span class="label-required">*</span></label>
+              <input type="time" id="ccp3-end-time" onchange="validateCCP3Field(this); updateCCP3Progress();">
+            </div>
+            <div class="form-group">
+              <label>Durée totale (minutes) <span class="label-required">*</span></label>
+              <input type="number" id="ccp3-duration" onchange="validateCCP3Field(this); updateCCP3Progress();" placeholder="ex: 25">
+            </div>
           </div>
         </div>
 
-        <div class="section">
-          <div class="section-title">✓ Contrôles</div>
-          <div class="checkbox-group">
-            <label class="checkbox-item">
-              <input type="checkbox">
-              <span class="checkbox-label">Produit protégé de la poussière</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox">
-              <span class="checkbox-label">Pas d'insectes visibles</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox">
-              <span class="checkbox-label">Refroidissement complet en < 30 min</span>
-            </label>
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>👁️ État du Produit Refroidi</span>
+            </div>
+            <div class="section-toggle">▼</div>
+          </div>
+          <div class="section-content">
+            <div class="form-group">
+              <label>Le produit est-il suffisamment froid pour être manipulé ? <span class="label-required">*</span></label>
+              <select id="ccp3-temperature" onchange="validateCCP3Field(this); updateCCP3Progress();">
+                <option value="">-- Sélectionner --</option>
+                <option selected>Oui, complètement froid</option>
+                <option>Oui, tiède mais manipulable</option>
+                <option>Non, encore chaud</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>État du produit observé <span class="label-required">*</span></label>
+              <select id="ccp3-state" onchange="validateCCP3Field(this); updateCCP3Progress();">
+                <option value="">-- Sélectionner --</option>
+                <option selected>Poudre homogène et sèche</option>
+                <option>Poudre avec légère humidité</option>
+                <option>Grumeaux formés</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>✓ Contrôles d'Équipement et Environnement</span>
+            </div>
+            <div class="section-toggle">▼</div>
+          </div>
+          <div class="section-content">
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP3Progress();">
+                <span class="checkbox-label">Machine à rotation fonctionne normalement</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP3Progress();">
+                <span class="checkbox-label">Produit protégé de la poussière pendant refroidissement</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP3Progress();">
+                <span class="checkbox-label">Pas d'insectes visibles</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP3Progress();">
+                <span class="checkbox-label">Pas de contamination croisée avec d'autres produits</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-collapsible always-visible">
+          <div class="section-header" style="cursor: default;">
+            <div class="section-header-title">
+              <span>🎯 DÉCISION – Choisir Une Action</span>
+            </div>
+          </div>
+          <div class="section-content" style="max-height: none;">
+            <div class="decision-cards">
+              <label class="decision-card accept">
+                <input type="radio" name="decision-ccp3" value="CONFORME">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">✓</div>
+                  <div class="card-label">CONFORME</div>
+                  <div class="card-description">Prêt pour mélange</div>
+                </div>
+              </label>
+              <label class="decision-card warning">
+                <input type="radio" name="decision-ccp3" value="À RETRAVAILLER">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">⚠️</div>
+                  <div class="card-label">À RETRAVAILLER</div>
+                  <div class="card-description">Remettre en machine</div>
+                </div>
+              </label>
+              <label class="decision-card reject">
+                <input type="radio" name="decision-ccp3" value="REJETÉ">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">✗</div>
+                  <div class="card-label">REJETÉ</div>
+                  <div class="card-description">Lot à isoler</div>
+                </div>
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -726,91 +1615,137 @@
     <div id="ccp4" class="tab-content">
       <div class="form-container">
         <div class="form-header">
-          <div class="phase-badge phase1-badge">🚀 Phase 1 – Prêt à l'implémentation</div>
-          <h2 class="form-title">CCP4 – Mélange (Mixing)</h2>
+          <h2 class="form-title">Mélange (Mixing)</h2>
           <p class="form-description">Préparation des lots avec pesée et respect de la formulation. Vérification d'homogénéité. Équipe production/qualité.</p>
         </div>
 
-        <div class="section">
-          <div class="section-title">📦 Préparation du Lot</div>
-          <div class="form-group">
-            <label>Date <span class="label-required">*</span></label>
-            <input type="date" value="2025-09-14">
+        <div class="form-progress">
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="ccp4-progress-bar" style="width: 0%"></div>
           </div>
-          <div class="form-group">
-            <label>N° Lot de production <span class="label-required">*</span></label>
-            <input type="text" value="PROD-2025-0051">
-          </div>
-          <div class="form-group">
-            <label>N° Lot farine torréfiée (CCP2) <span class="label-required">*</span></label>
-            <input type="text" placeholder="Lien vers CCP2">
+          <div class="progress-text">
+            <span>Progression du formulaire</span>
+            <span id="ccp4-progress-text">0%</span>
           </div>
         </div>
 
-        <div class="section">
-          <div class="section-title">⚖️ Pesée des Ingrédients</div>
-          <div class="info-box">
-            Formule cible pour 50 kg: Farine 35 kg | Lait 8 kg | Sucre 4 kg | Huile 2 kg | Pâte d'arachide 1 kg
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>📦 Préparation du Lot (Obligatoire)</span>
+            </div>
+            <div class="section-toggle">▼</div>
           </div>
-          <div class="two-column">
+          <div class="section-content">
             <div class="form-group">
-              <label>Farine (kg) [70%]</label>
-              <input type="number" value="35.0">
+              <label>Date <span class="label-required">*</span></label>
+              <input type="date" id="ccp4-date" onchange="validateCCP4Field(this); updateCCP4Progress();">
             </div>
             <div class="form-group">
-              <label>Lait en poudre (kg) [16%]</label>
-              <input type="number" value="8.0">
-            </div>
-          </div>
-          <div class="two-column">
-            <div class="form-group">
-              <label>Sucre (kg) [8%]</label>
-              <input type="number" value="4.0">
+              <label>N° Lot de production <span class="label-required">*</span></label>
+              <input type="text" id="ccp4-lot" onchange="validateCCP4Field(this); updateCCP4Progress();">
             </div>
             <div class="form-group">
-              <label>Huile de palme (kg) [4%]</label>
-              <input type="number" value="2.0">
+              <label>N° Lot farine torréfiée (CCP2) <span class="label-required">*</span></label>
+              <input type="text" id="ccp4-ccp2-link" placeholder="Lien vers CCP2" onchange="validateCCP4Field(this); updateCCP4Progress();">
             </div>
-          </div>
-          <div class="form-group">
-            <label>Pâte d'arachide (kg) [2%]</label>
-            <input type="number" value="1.0">
           </div>
         </div>
 
-        <div class="section">
-          <div class="section-title">✓ Contrôles</div>
-          <div class="checkbox-group">
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Mélangeur propre avant utilisation</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Toutes pesées conformes à la recette</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Mélange homogène (pas de grumeaux)</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Couleur uniforme</span>
-            </label>
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>⚖️ Pesée des Ingrédients</span>
+            </div>
+            <div class="section-toggle">▼</div>
+          </div>
+          <div class="section-content">
+            <div class="info-box">
+              Formule cible pour 50 kg: Farine 35 kg | Lait 8 kg | Sucre 4 kg | Huile 2 kg | Pâte d'arachide 1 kg
+            </div>
+            <div class="two-column">
+              <div class="form-group">
+                <label>Farine (kg) [70%] <span class="label-required">*</span></label>
+                <input type="number" id="ccp4-flour" onchange="validateCCP4Field(this); updateCCP4Progress();">
+              </div>
+              <div class="form-group">
+                <label>Lait en poudre (kg) [16%] <span class="label-required">*</span></label>
+                <input type="number" id="ccp4-milk" onchange="validateCCP4Field(this); updateCCP4Progress();">
+              </div>
+            </div>
+            <div class="two-column">
+              <div class="form-group">
+                <label>Sucre (kg) [8%] <span class="label-required">*</span></label>
+                <input type="number" id="ccp4-sugar" onchange="validateCCP4Field(this); updateCCP4Progress();">
+              </div>
+              <div class="form-group">
+                <label>Huile de palme (kg) [4%] <span class="label-required">*</span></label>
+                <input type="number" id="ccp4-oil" onchange="validateCCP4Field(this); updateCCP4Progress();">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Pâte d'arachide (kg) [2%] <span class="label-required">*</span></label>
+              <input type="number" id="ccp4-peanut" onchange="validateCCP4Field(this); updateCCP4Progress();">
+            </div>
           </div>
         </div>
 
-        <div class="section">
-          <div class="section-title">🎯 Décision</div>
-          <div class="checkbox-group">
-            <label class="checkbox-item">
-              <input type="radio" name="decision-ccp4" checked>
-              <span class="checkbox-label"><strong>✓ CONFORME</strong> – Procéder à la mouture</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="radio" name="decision-ccp4">
-              <span class="checkbox-label"><strong>✗ NON CONFORME</strong> – Lot à isoler, raison: ______</span>
-            </label>
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>✓ Contrôles</span>
+            </div>
+            <div class="section-toggle">▼</div>
+          </div>
+          <div class="section-content">
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP4Progress();">
+                <span class="checkbox-label">Mélangeur propre avant utilisation</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP4Progress();">
+                <span class="checkbox-label">Toutes pesées conformes à la recette</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP4Progress();">
+                <span class="checkbox-label">Mélange homogène (pas de grumeaux)</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP4Progress();">
+                <span class="checkbox-label">Couleur uniforme</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-collapsible always-visible">
+          <div class="section-header" style="cursor: default;">
+            <div class="section-header-title">
+              <span>🎯 DÉCISION – Choisir Une Action</span>
+            </div>
+          </div>
+          <div class="section-content" style="max-height: none;">
+            <div class="decision-cards">
+              <label class="decision-card accept">
+                <input type="radio" name="decision-ccp4" value="CONFORME">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">✓</div>
+                  <div class="card-label">CONFORME</div>
+                  <div class="card-description">Procéder à mouture</div>
+                </div>
+              </label>
+              <label class="decision-card reject">
+                <input type="radio" name="decision-ccp4" value="NON CONFORME">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">✗</div>
+                  <div class="card-label">NON CONFORME</div>
+                  <div class="card-description">Lot à isoler</div>
+                </div>
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -820,56 +1755,135 @@
     <div id="ccp5" class="tab-content">
       <div class="form-container">
         <div class="form-header">
-          <div class="phase-badge phase3-badge">📋 Phase 3 – Infrastructure en attente</div>
-          <h2 class="form-title">CCP5 – Mouture (Grinding)</h2>
-          <p class="form-description">Contrôle de l'absence de fragments métalliques. Nettoyage du broyeur. Équipe production.</p>
+          <h2 class="form-title">Mouture (Grinding)</h2>
+          <p class="form-description">Contrôle de l'absence de fragments métalliques. Nettoyage du broyeur. Rempli par superviseur.</p>
         </div>
 
-        <div class="info-box future">
-          ℹ️ <strong>Status:</strong> À implémenter après Phase 1 stabilisée. Formule: inspection visuelle avant/après mouture + fiche de maintenance du broyeur.
-        </div>
-
-        <div class="section">
-          <div class="section-title">📦 Lot à Moudre</div>
-          <div class="form-group">
-            <label>N° Lot mélange (CCP4)</label>
-            <input type="text" placeholder="Lien vers CCP4">
+        <div class="form-progress">
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="ccp5-progress-bar" style="width: 0%"></div>
+          </div>
+          <div class="progress-text">
+            <span>Progression du formulaire</span>
+            <span id="ccp5-progress-text">0%</span>
           </div>
         </div>
 
-        <div class="section">
-          <div class="section-title">🔧 Contrôle Préalable du Broyeur</div>
-          <div class="checkbox-group">
-            <label class="checkbox-item">
-              <input type="checkbox">
-              <span class="checkbox-label">Broyeur nettoyé et sec</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox">
-              <span class="checkbox-label">Aucune pièce cassée visible</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox">
-              <span class="checkbox-label">Aucun fragment métallique</span>
-            </label>
+        <div class="info-box">
+          ℹ️ <strong>Inspection visuelle avant/après mouture:</strong> Vérifier l'absence de fragments métalliques et l'état du broyeur. Maintenance enregistrée.
+        </div>
+
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>📦 Lot à Moudre (Obligatoire)</span>
+            </div>
+            <div class="section-toggle">▼</div>
+          </div>
+          <div class="section-content">
+            <div class="form-group">
+              <label>Date <span class="label-required">*</span></label>
+              <input type="date" id="ccp5-date" onchange="validateCCP5Field(this); updateCCP5Progress();">
+            </div>
+            <div class="two-column">
+              <div class="form-group">
+                <label>N° Lot mélange (CCP4) <span class="label-required">*</span></label>
+                <input type="text" id="ccp5-lot" placeholder="ex: MIX-2025-0847" onchange="validateCCP5Field(this); updateCCP5Progress();">
+              </div>
+              <div class="form-group">
+                <label>Quantité (kg) <span class="label-required">*</span></label>
+                <input type="text" id="ccp5-quantity" onchange="validateCCP5Field(this); updateCCP5Progress();">
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="section">
-          <div class="section-title">✓ Après Mouture</div>
-          <div class="checkbox-group">
-            <label class="checkbox-item">
-              <input type="checkbox">
-              <span class="checkbox-label">Produit moulu finement</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox">
-              <span class="checkbox-label">Pas de grumeaux</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox">
-              <span class="checkbox-label">Broyeur nettoyé après utilisation</span>
-            </label>
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>🔧 Contrôle Préalable du Broyeur</span>
+            </div>
+            <div class="section-toggle">▼</div>
+          </div>
+          <div class="section-content">
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP5Progress();">
+                <span class="checkbox-label">Broyeur nettoyé et sec</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP5Progress();">
+                <span class="checkbox-label">Aucune pièce cassée visible</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP5Progress();">
+                <span class="checkbox-label">Aucun fragment métallique</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>✓ Après Mouture</span>
+            </div>
+            <div class="section-toggle">▼</div>
+          </div>
+          <div class="section-content">
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP5Progress();">
+                <span class="checkbox-label">Produit moulu finement</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP5Progress();">
+                <span class="checkbox-label">Pas de grumeaux</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP5Progress();">
+                <span class="checkbox-label">Broyeur nettoyé après utilisation</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-collapsible always-visible">
+          <div class="section-header" style="cursor: default;">
+            <div class="section-header-title">
+              <span>🎯 DÉCISION – Choisir Une Action</span>
+            </div>
+          </div>
+          <div class="section-content" style="max-height: none;">
+            <div class="decision-cards">
+              <label class="decision-card accept">
+                <input type="radio" name="decision-ccp5" value="CONFORME">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">✓</div>
+                  <div class="card-label">CONFORME</div>
+                  <div class="card-description">Procéder au tamisage</div>
+                </div>
+              </label>
+              <label class="decision-card warning">
+                <input type="radio" name="decision-ccp5" value="À VÉRIFIER">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">⚠️</div>
+                  <div class="card-label">À VÉRIFIER</div>
+                  <div class="card-description">Reprendre le contrôle</div>
+                </div>
+              </label>
+              <label class="decision-card reject">
+                <input type="radio" name="decision-ccp5" value="REJETÉ">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">✗</div>
+                  <div class="card-label">REJETÉ</div>
+                  <div class="card-description">Maintenance requise</div>
+                </div>
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -879,60 +1893,139 @@
     <div id="ccp6" class="tab-content">
       <div class="form-container">
         <div class="form-header">
-          <div class="phase-badge phase3-badge">📋 Phase 3 – Infrastructure en attente</div>
-          <h2 class="form-title">CCP6 – Tamisage (Sieving)</h2>
-          <p class="form-description">Contrôle de l'intégrité du tamis. Absence de fragments métalliques. Élimination de la poussière. Équipe production.</p>
+          <h2 class="form-title">Tamisage (Sieving)</h2>
+          <p class="form-description">Contrôle de l'intégrité du tamis. Absence de fragments métalliques. Élimination de la poussière. Rempli par superviseur.</p>
         </div>
 
-        <div class="info-box future">
-          ℹ️ <strong>Status:</strong> À implémenter en Phase 3. Formule: inspection visuelle du tamis + observation du produit avant/après tamisage.
-        </div>
-
-        <div class="section">
-          <div class="section-title">📦 Lot à Tamiser</div>
-          <div class="form-group">
-            <label>N° Lot moulu (CCP5)</label>
-            <input type="text" placeholder="Lien vers CCP5">
+        <div class="form-progress">
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="ccp6-progress-bar" style="width: 0%"></div>
+          </div>
+          <div class="progress-text">
+            <span>Progression du formulaire</span>
+            <span id="ccp6-progress-text">0%</span>
           </div>
         </div>
 
-        <div class="section">
-          <div class="section-title">✓ Contrôle du Tamis</div>
-          <div class="checkbox-group">
-            <label class="checkbox-item">
-              <input type="checkbox">
-              <span class="checkbox-label">Tamis intact (pas de déchirures)</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox">
-              <span class="checkbox-label">Mailles régulières et propres</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox">
-              <span class="checkbox-label">Pas de résidus anciens</span>
-            </label>
+        <div class="info-box">
+          ℹ️ <strong>Inspection visuelle du tamis + observation du produit:</strong> Vérifier l'intégrité du tamis, l'absence de fragments métalliques et la qualité du produit après tamisage.
+        </div>
+
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>📦 Lot à Tamiser (Obligatoire)</span>
+            </div>
+            <div class="section-toggle">▼</div>
+          </div>
+          <div class="section-content">
+            <div class="form-group">
+              <label>Date <span class="label-required">*</span></label>
+              <input type="date" id="ccp6-date" onchange="validateCCP6Field(this); updateCCP6Progress();">
+            </div>
+            <div class="two-column">
+              <div class="form-group">
+                <label>N° Lot moulu (CCP5) <span class="label-required">*</span></label>
+                <input type="text" id="ccp6-lot" placeholder="ex: GRD-2025-0847" onchange="validateCCP6Field(this); updateCCP6Progress();">
+              </div>
+              <div class="form-group">
+                <label>Quantité (kg) <span class="label-required">*</span></label>
+                <input type="text" id="ccp6-quantity" onchange="validateCCP6Field(this); updateCCP6Progress();">
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="section">
-          <div class="section-title">✓ Après Tamisage</div>
-          <div class="checkbox-group">
-            <label class="checkbox-item">
-              <input type="checkbox">
-              <span class="checkbox-label">Produit homogène</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox">
-              <span class="checkbox-label">Pas de grumeaux</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox">
-              <span class="checkbox-label">Poussière éliminée</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox">
-              <span class="checkbox-label">Tamis nettoyé après utilisation</span>
-            </label>
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>✓ Contrôle du Tamis</span>
+            </div>
+            <div class="section-toggle">▼</div>
+          </div>
+          <div class="section-content">
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP6Progress();">
+                <span class="checkbox-label">Tamis intact (pas de déchirures)</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP6Progress();">
+                <span class="checkbox-label">Mailles régulières et propres</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP6Progress();">
+                <span class="checkbox-label">Pas de résidus anciens</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>✓ Après Tamisage</span>
+            </div>
+            <div class="section-toggle">▼</div>
+          </div>
+          <div class="section-content">
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP6Progress();">
+                <span class="checkbox-label">Produit homogène</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP6Progress();">
+                <span class="checkbox-label">Pas de grumeaux</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP6Progress();">
+                <span class="checkbox-label">Poussière éliminée</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP6Progress();">
+                <span class="checkbox-label">Tamis nettoyé après utilisation</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-collapsible always-visible">
+          <div class="section-header" style="cursor: default;">
+            <div class="section-header-title">
+              <span>🎯 DÉCISION – Choisir Une Action</span>
+            </div>
+          </div>
+          <div class="section-content" style="max-height: none;">
+            <div class="decision-cards">
+              <label class="decision-card accept">
+                <input type="radio" name="decision-ccp6" value="CONFORME">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">✓</div>
+                  <div class="card-label">CONFORME</div>
+                  <div class="card-description">Prêt pour conditionnement</div>
+                </div>
+              </label>
+              <label class="decision-card warning">
+                <input type="radio" name="decision-ccp6" value="À VÉRIFIER">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">⚠️</div>
+                  <div class="card-label">À VÉRIFIER</div>
+                  <div class="card-description">Reprendre le tamisage</div>
+                </div>
+              </label>
+              <label class="decision-card reject">
+                <input type="radio" name="decision-ccp6" value="REJETÉ">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">✗</div>
+                  <div class="card-label">REJETÉ</div>
+                  <div class="card-description">Maintenance requise</div>
+                </div>
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -942,90 +2035,197 @@
     <div id="ccp7" class="tab-content">
       <div class="form-container">
         <div class="form-header">
-          <div class="phase-badge phase1-badge">🚀 Phase 1 – Prêt à l'implémentation</div>
-          <h2 class="form-title">CCP7 – Conditionnement (Packaging)</h2>
-          <p class="form-description">Contrôle final avant expédition. Vérification d'intégrité, scellage, étiquetage. Équipe qualité.</p>
+          <h2 class="form-title">Conditionnement (Packaging)</h2>
+          <p class="form-description">Contrôle final avant expédition. Inspection des pots, hygiène du personnel, remplissage sûr. Équipe qualité/production.</p>
         </div>
 
-        <div class="section">
-          <div class="section-title">📦 Lot à Conditionner</div>
-          <div class="form-group">
-            <label>Date <span class="label-required">*</span></label>
-            <input type="date" value="2025-09-14">
+        <div class="form-progress">
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="ccp7-progress-bar" style="width: 0%"></div>
           </div>
-          <div class="form-group">
-            <label>N° Lot tamisé (CCP6) <span class="label-required">*</span></label>
-            <input type="text" placeholder="Lien vers CCP6">
+          <div class="progress-text">
+            <span>Progression du formulaire</span>
+            <span id="ccp7-progress-text">0%</span>
           </div>
         </div>
 
-        <div class="section">
-          <div class="section-title">✓ Contrôles Préalables</div>
-          <div class="checkbox-group">
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Équipement d'ensachage propre</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Sachets en bon état (pas de trous)</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Scelleur fonctionnel</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Étiquettes correctes et disponibles</span>
-            </label>
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>📦 Lot à Conditionner (Obligatoire)</span>
+            </div>
+            <div class="section-toggle">▼</div>
+          </div>
+          <div class="section-content">
+            <div class="form-group">
+              <label>Date <span class="label-required">*</span></label>
+              <input type="date" id="ccp7-date" onchange="validateCCP7Field(this); updateCCP7Progress();">
+            </div>
+            <div class="form-group">
+              <label>N° Lot tamisé (CCP6) <span class="label-required">*</span></label>
+              <input type="text" id="ccp7-lot" placeholder="Lien vers CCP6" onchange="validateCCP7Field(this); updateCCP7Progress();">
+            </div>
           </div>
         </div>
 
-        <div class="section">
-          <div class="section-title">📊 Vérification des Sachets</div>
-          <div class="form-group">
-            <label>Nombre de sachets de 50kg <span class="label-required">*</span></label>
-            <input type="number" value="10">
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>🏺 Vérification des Pots Stockés</span>
+            </div>
+            <div class="section-toggle">▼</div>
           </div>
-          <div class="checkbox-group">
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Poids correct (50kg ± 0.5kg)</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Scellage hermétique (pas d'ouvertures)</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Étiquette apposée correctement</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">N° Lot lisible sur étiquette</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" checked>
-              <span class="checkbox-label">Pas de dommages visibles</span>
-            </label>
+          <div class="section-content">
+            <div class="info-box">
+              Les pots ont été inspectés à la réception (CCP1). Vérifier l'état avant utilisation pour le remplissage.
+            </div>
+            <div class="form-group">
+              <label>Lien vers réception des pots (CCP1) <span class="label-required">*</span></label>
+              <input type="text" id="ccp7-pots" placeholder="Réf. réception pots" onchange="validateCCP7Field(this); updateCCP7Progress();">
+            </div>
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP7Progress();">
+                <span class="checkbox-label">Pots toujours en bon état (pas de nouvelle déformation)</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP7Progress();">
+                <span class="checkbox-label">Pas de débris/poussière accumulée</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP7Progress();">
+                <span class="checkbox-label">Fermeture/couvercle toujours intact</span>
+              </label>
+            </div>
           </div>
         </div>
 
-        <div class="section">
-          <div class="section-title">🎯 Décision Finale</div>
-          <div class="checkbox-group">
-            <label class="checkbox-item">
-              <input type="radio" name="decision-ccp7" checked>
-              <span class="checkbox-label"><strong>✓ CONFORME</strong> – Prêt à la vente/livraison</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="radio" name="decision-ccp7">
-              <span class="checkbox-label"><strong>⚠️ DÉFAUT MINEUR</strong> – Raison: ______</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="radio" name="decision-ccp7">
-              <span class="checkbox-label"><strong>✗ REJETÉ</strong> – Raison: ______</span>
-            </label>
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>🧤 Hygiène du Personnel (CRITIQUE)</span>
+            </div>
+            <div class="section-toggle">▼</div>
+          </div>
+          <div class="section-content">
+            <div class="info-box">
+              ⚠️ <strong>Critère critique de sécurité alimentaire.</strong> Aucun remplissage sans ces contrôles.
+            </div>
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" required onchange="updateCCP7Progress();">
+                <span class="checkbox-label"><strong>✓ GANTS alimentaires à usage unique enfilés</strong> avant le remplissage</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" required onchange="updateCCP7Progress();">
+                <span class="checkbox-label"><strong>✓ Pas de mains nues</strong> en contact avec le produit ou l'intérieur du pot</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" onchange="updateCCP7Progress();">
+                <span class="checkbox-label">Équipement de remplissage (louche/ustensile) propre</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>🍲 Procédure de Remplissage</span>
+            </div>
+            <div class="section-toggle">▼</div>
+          </div>
+          <div class="section-content">
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP7Progress();">
+                <span class="checkbox-label">Utiliser louche/ustensile <strong>(pas les mains)</strong></span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP7Progress();">
+                <span class="checkbox-label">Recouvrir immédiatement après remplissage</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP7Progress();">
+                <span class="checkbox-label">Scellage propre (pas de produit sur le bord du pot)</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-collapsible">
+          <div class="section-header" onclick="toggleSection(this)">
+            <div class="section-header-title">
+              <span>✓ Vérification Finale des Pots</span>
+            </div>
+            <div class="section-toggle">▼</div>
+          </div>
+          <div class="section-content">
+            <div class="form-group">
+              <label>Nombre total de pots remplis <span class="label-required">*</span></label>
+              <input type="number" id="ccp7-quantity" onchange="validateCCP7Field(this); updateCCP7Progress();">
+            </div>
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP7Progress();">
+                <span class="checkbox-label">Tous les pots bien fermés/scellés</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP7Progress();">
+                <span class="checkbox-label">Étiquette apposée correctement sur chaque pot</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP7Progress();">
+                <span class="checkbox-label">N° Lot lisible sur étiquette</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP7Progress();">
+                <span class="checkbox-label">Aucune fuite/éclaboussure sur l'extérieur</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" checked onchange="updateCCP7Progress();">
+                <span class="checkbox-label">Pas de dommages visibles après remplissage</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-collapsible always-visible">
+          <div class="section-header" style="cursor: default;">
+            <div class="section-header-title">
+              <span>🎯 DÉCISION FINALE – Choisir Une Action</span>
+            </div>
+          </div>
+          <div class="section-content" style="max-height: none;">
+            <div class="decision-cards">
+              <label class="decision-card accept">
+                <input type="radio" name="decision-ccp7" value="CONFORME">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">✓</div>
+                  <div class="card-label">CONFORME</div>
+                  <div class="card-description">Prêt à vendre</div>
+                </div>
+              </label>
+              <label class="decision-card warning">
+                <input type="radio" name="decision-ccp7" value="DÉFAUT MINEUR">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">⚠️</div>
+                  <div class="card-label">DÉFAUT MINEUR</div>
+                  <div class="card-description">Besoin ajustement</div>
+                </div>
+              </label>
+              <label class="decision-card reject">
+                <input type="radio" name="decision-ccp7" value="REJETÉ">
+                <div class="card-background"></div>
+                <div class="card-content">
+                  <div class="card-icon">✗</div>
+                  <div class="card-label">REJETÉ</div>
+                  <div class="card-description">Lot à isoler</div>
+                </div>
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -1047,6 +2247,956 @@
       // Scroll to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // Conditional display: Show pot controls only when "Pots en plastique" is selected in CCP1
+    // Also update quantity label and date field visibility
+    document.getElementById('ccp1-product').addEventListener('change', function() {
+      const potSection = document.getElementById('ccp1-pots-section');
+      const qtyLabel = document.getElementById('ccp1-qty-label');
+      const fabricationGroup = document.getElementById('ccp1-fabrication-group');
+      const expiryGroup = document.getElementById('ccp1-expiry-group');
+
+      if (this.value === 'Pots en plastique alimentaire') {
+        potSection.style.display = 'block';
+        qtyLabel.innerHTML = 'Quantité (nombre de pots) <span class="label-required">*</span>';
+        fabricationGroup.style.display = 'block';
+        expiryGroup.style.display = 'block';
+        // Make dates optional (no asterisk, no required attribute)
+        document.querySelector('#ccp1-fabrication-group label').innerHTML = 'Date de fabrication';
+        document.querySelector('#ccp1-expiry-group label').innerHTML = 'Date d\'expiration (DLC)';
+        document.getElementById('ccp1-fabrication').removeAttribute('required');
+        document.getElementById('ccp1-expiry').removeAttribute('required');
+      } else if (this.value === 'Huile de palme' || this.value === 'Pâte d\'arachide') {
+        potSection.style.display = 'none';
+        qtyLabel.innerHTML = 'Quantité (kg) <span class="label-required">*</span>';
+        fabricationGroup.style.display = 'block';
+        expiryGroup.style.display = 'block';
+        // Make dates optional (no asterisk, no required attribute)
+        document.querySelector('#ccp1-fabrication-group label').innerHTML = 'Date de fabrication';
+        document.querySelector('#ccp1-expiry-group label').innerHTML = 'Date d\'expiration (DLC)';
+        document.getElementById('ccp1-fabrication').removeAttribute('required');
+        document.getElementById('ccp1-expiry').removeAttribute('required');
+      } else {
+        potSection.style.display = 'none';
+        qtyLabel.innerHTML = 'Quantité (kg) <span class="label-required">*</span>';
+        fabricationGroup.style.display = 'block';
+        expiryGroup.style.display = 'block';
+        // Make dates required (add asterisk and required attribute)
+        document.querySelector('#ccp1-fabrication-group label').innerHTML = 'Date de fabrication <span class="label-required">*</span>';
+        document.querySelector('#ccp1-expiry-group label').innerHTML = 'Date d\'expiration (DLC) <span class="label-required">*</span>';
+        document.getElementById('ccp1-fabrication').setAttribute('required', 'required');
+        document.getElementById('ccp1-expiry').setAttribute('required', 'required');
+      }
+    });
+
+    // Suppliers Management
+    let suppliers = JSON.parse(localStorage.getItem('cigal-suppliers')) || [];
+
+    function addSupplier() {
+      const name = document.getElementById('supplier-name').value.trim();
+      const contact = document.getElementById('supplier-contact').value.trim();
+      const phone = document.getElementById('supplier-phone').value.trim();
+      const email = document.getElementById('supplier-email').value.trim();
+      const address = document.getElementById('supplier-address').value.trim();
+      const products = document.getElementById('supplier-products').value.trim();
+
+      if (!name || !phone || !products) {
+        alert('Veuillez remplir les champs obligatoires : Nom, Téléphone, Produits');
+        return;
+      }
+
+      const supplier = { id: Date.now(), name, contact, phone, email, address, products };
+      suppliers.push(supplier);
+      localStorage.setItem('cigal-suppliers', JSON.stringify(suppliers));
+
+      // Clear form
+      document.getElementById('supplier-name').value = '';
+      document.getElementById('supplier-contact').value = '';
+      document.getElementById('supplier-phone').value = '';
+      document.getElementById('supplier-email').value = '';
+      document.getElementById('supplier-address').value = '';
+      document.getElementById('supplier-products').value = '';
+
+      updateSuppliersList();
+    }
+
+    function deleteSupplier(id) {
+      suppliers = suppliers.filter(s => s.id !== id);
+      localStorage.setItem('cigal-suppliers', JSON.stringify(suppliers));
+      updateSuppliersList();
+    }
+
+    function updateSuppliersList() {
+      const tbody = document.getElementById('suppliers-tbody');
+      const empty = document.getElementById('suppliers-empty');
+      tbody.innerHTML = '';
+
+      if (suppliers.length === 0) {
+        empty.style.display = 'block';
+        return;
+      }
+
+      empty.style.display = 'none';
+      suppliers.forEach(s => {
+        const row = document.createElement('tr');
+        row.style.borderBottom = '1px solid var(--border-color)';
+        row.innerHTML = `
+          <td style="padding: 10px;">${s.name}</td>
+          <td style="padding: 10px;">${s.contact}</td>
+          <td style="padding: 10px;">${s.phone}</td>
+          <td style="padding: 10px;">${s.email}</td>
+          <td style="padding: 10px;">${s.products}</td>
+          <td style="padding: 10px; text-align: center;">
+            <button onclick="deleteSupplier(${s.id})" style="padding: 4px 8px; background: #B84C4C; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">Supprimer</button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    // Initialize suppliers list on load
+    updateSuppliersList();
+
+    // ==========================================
+    // PHASE 1: FORM IMPROVEMENTS
+    // ==========================================
+
+    // Collapsible Sections
+    function toggleSection(header) {
+      const content = header.nextElementSibling;
+      const toggle = header.querySelector('.section-toggle');
+
+      if (content.classList.contains('collapsed')) {
+        content.classList.remove('collapsed');
+        toggle.classList.remove('collapsed');
+      } else {
+        content.classList.add('collapsed');
+        toggle.classList.add('collapsed');
+      }
+    }
+
+    // Smart Defaults - Load last entry on page load
+    function loadCCP1Defaults() {
+      const lastEntry = JSON.parse(localStorage.getItem('ccp1-last-entry') || '{}');
+
+      if (lastEntry.date) document.getElementById('ccp1-date').value = lastEntry.date;
+      if (lastEntry.supplier) document.getElementById('ccp1-supplier').value = lastEntry.supplier;
+      if (lastEntry.product) {
+        document.getElementById('ccp1-product').value = lastEntry.product;
+        onCCP1ProductChange();
+      }
+      if (lastEntry.quantity) document.getElementById('ccp1-quantity').value = lastEntry.quantity;
+      if (lastEntry.lot) document.getElementById('ccp1-lot').value = lastEntry.lot;
+
+      // Set today's date if empty
+      if (!document.getElementById('ccp1-date').value) {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('ccp1-date').value = today;
+      }
+
+      updateCCP1Progress();
+    }
+
+    // Conditional display for pots + date requirements
+    function onCCP1ProductChange() {
+      const potSection = document.getElementById('ccp1-pots-section');
+      const qtyLabel = document.getElementById('ccp1-qty-label');
+      const fabricationLabel = document.getElementById('ccp1-fabrication-label');
+      const expiryLabel = document.getElementById('ccp1-expiry-label');
+      const product = document.getElementById('ccp1-product').value;
+
+      if (product === 'Pots en plastique alimentaire') {
+        potSection.style.display = 'block';
+        qtyLabel.innerHTML = 'Quantité (nombre de pots) <span class="label-required">*</span>';
+        fabricationLabel.innerHTML = 'Date de fabrication';
+        expiryLabel.innerHTML = 'Date d\'expiration (DLC)';
+        document.getElementById('ccp1-fabrication').removeAttribute('required');
+        document.getElementById('ccp1-expiry').removeAttribute('required');
+      } else if (product === 'Huile de palme' || product === 'Pâte d\'arachide') {
+        potSection.style.display = 'none';
+        qtyLabel.innerHTML = 'Quantité (kg) <span class="label-required">*</span>';
+        fabricationLabel.innerHTML = 'Date de fabrication';
+        expiryLabel.innerHTML = 'Date d\'expiration (DLC)';
+        document.getElementById('ccp1-fabrication').removeAttribute('required');
+        document.getElementById('ccp1-expiry').removeAttribute('required');
+      } else {
+        potSection.style.display = 'none';
+        qtyLabel.innerHTML = 'Quantité (kg) <span class="label-required">*</span>';
+        fabricationLabel.innerHTML = 'Date de fabrication <span class="label-required">*</span>';
+        expiryLabel.innerHTML = 'Date d\'expiration (DLC) <span class="label-required">*</span>';
+        document.getElementById('ccp1-fabrication').setAttribute('required', 'required');
+        document.getElementById('ccp1-expiry').setAttribute('required', 'required');
+      }
+    }
+
+    // Real-time Validation
+    function validateCCP1Field(field) {
+      const value = field.value.trim();
+      const isRequired = field.hasAttribute('required') || field.closest('.form-group').querySelector('label').textContent.includes('*');
+      const formGroup = field.closest('.form-group');
+
+      // Remove old validation messages
+      const oldMessage = formGroup.querySelector('.validation-message');
+      if (oldMessage) oldMessage.remove();
+
+      // Check if empty and required
+      if (isRequired && !value) {
+        formGroup.classList.add('has-error');
+        formGroup.classList.remove('has-success');
+        return false;
+      }
+
+      // Validation by field type
+      if (field.id === 'ccp1-date' || field.id === 'ccp1-fabrication' || field.id === 'ccp1-expiry') {
+        if (value) {
+          const date = new Date(value);
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+
+          if (date > today && field.id === 'ccp1-date') {
+            // Reception date cannot be in future
+            formGroup.classList.add('has-error');
+            const msg = document.createElement('div');
+            msg.className = 'validation-message error';
+            msg.textContent = '❌ La date ne peut pas être dans le futur';
+            formGroup.appendChild(msg);
+            return false;
+          }
+        }
+      }
+
+      // Validation for quantity
+      if (field.id === 'ccp1-quantity') {
+        const qty = parseFloat(value);
+        if (value && isNaN(qty)) {
+          formGroup.classList.add('has-error');
+          const msg = document.createElement('div');
+          msg.className = 'validation-message error';
+          msg.textContent = '❌ Doit être un nombre';
+          formGroup.appendChild(msg);
+          return false;
+        }
+        if (value && qty <= 0) {
+          formGroup.classList.add('has-error');
+          const msg = document.createElement('div');
+          msg.className = 'validation-message error';
+          msg.textContent = '❌ La quantité doit être > 0';
+          formGroup.appendChild(msg);
+          return false;
+        }
+      }
+
+      // All validations passed
+      if (value) {
+        formGroup.classList.add('has-success');
+        formGroup.classList.remove('has-error');
+        const msg = document.createElement('div');
+        msg.className = 'validation-message success';
+        msg.textContent = '✓ OK';
+        formGroup.appendChild(msg);
+        return true;
+      } else {
+        formGroup.classList.remove('has-error', 'has-success');
+      }
+
+      return true;
+    }
+
+    // Progress Tracking
+    function updateCCP1Progress() {
+      const requiredFields = [
+        'ccp1-date',
+        'ccp1-supplier',
+        'ccp1-product',
+        'ccp1-quantity',
+        'ccp1-lot'
+      ];
+
+      // Conditional required fields based on product
+      const product = document.getElementById('ccp1-product').value;
+      if (product !== 'Pots en plastique alimentaire' &&
+          product !== 'Huile de palme' &&
+          product !== 'Pâte d\'arachide') {
+        requiredFields.push('ccp1-fabrication', 'ccp1-expiry');
+      }
+
+      let completed = 0;
+      requiredFields.forEach(id => {
+        const field = document.getElementById(id);
+        if (field && field.value && field.value.trim()) {
+          completed++;
+        }
+      });
+
+      const percentage = Math.round((completed / requiredFields.length) * 100);
+      const progressBar = document.getElementById('ccp1-progress-bar');
+      const progressText = document.getElementById('ccp1-progress-text');
+
+      if (progressBar) {
+        progressBar.style.width = percentage + '%';
+      }
+      if (progressText) {
+        progressText.textContent = percentage + '%';
+      }
+    }
+
+    // Load defaults on page load
+    window.addEventListener('load', function() {
+      loadCCP1Defaults();
+      loadCCP2Defaults();
+      loadCCP3Defaults();
+      loadCCP4Defaults();
+      loadCCP5Defaults();
+      loadCCP6Defaults();
+      loadCCP7Defaults();
+    });
+
+    // ==========================================
+    // CCP2 FUNCTIONS
+    // ==========================================
+    function loadCCP2Defaults() {
+      const lastEntry = JSON.parse(localStorage.getItem('ccp2-last-entry') || '{}');
+      if (lastEntry.date) document.getElementById('ccp2-date').value = lastEntry.date;
+      if (lastEntry.lot) document.getElementById('ccp2-lot').value = lastEntry.lot;
+      if (lastEntry.quantity) document.getElementById('ccp2-quantity').value = lastEntry.quantity;
+      if (!document.getElementById('ccp2-date').value) {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('ccp2-date').value = today;
+      }
+      updateCCP2Progress();
+    }
+
+    function validateCCP2Field(field) {
+      const value = field.value.trim();
+      const isRequired = field.hasAttribute('required') || field.closest('.form-group').querySelector('label').textContent.includes('*');
+      const formGroup = field.closest('.form-group');
+      const oldMessage = formGroup.querySelector('.validation-message');
+      if (oldMessage) oldMessage.remove();
+
+      if (isRequired && !value) {
+        formGroup.classList.add('has-error');
+        formGroup.classList.remove('has-success');
+        return false;
+      }
+
+      if (value && (field.id === 'ccp2-date')) {
+        const date = new Date(value);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        if (date > today) {
+          formGroup.classList.add('has-error');
+          const msg = document.createElement('div');
+          msg.className = 'validation-message error';
+          msg.textContent = '❌ La date ne peut pas être dans le futur';
+          formGroup.appendChild(msg);
+          return false;
+        }
+      }
+
+      if (value) {
+        formGroup.classList.add('has-success');
+        formGroup.classList.remove('has-error');
+        return true;
+      }
+      return true;
+    }
+
+    function updateCCP2Progress() {
+      const requiredFields = ['ccp2-date', 'ccp2-lot', 'ccp2-quantity', 'ccp2-start-time', 'ccp2-end-time', 'ccp2-color', 'ccp2-smell'];
+      let completed = 0;
+      requiredFields.forEach(id => {
+        const field = document.getElementById(id);
+        if (field && field.value && field.value.trim()) completed++;
+      });
+      const percentage = Math.round((completed / requiredFields.length) * 100);
+      const progressBar = document.getElementById('ccp2-progress-bar');
+      const progressText = document.getElementById('ccp2-progress-text');
+      if (progressBar) progressBar.style.width = percentage + '%';
+      if (progressText) progressText.textContent = percentage + '%';
+    }
+
+    // ==========================================
+    // CCP3 FUNCTIONS
+    // ==========================================
+    function loadCCP3Defaults() {
+      const lastEntry = JSON.parse(localStorage.getItem('ccp3-last-entry') || '{}');
+      if (lastEntry.date) document.getElementById('ccp3-date').value = lastEntry.date;
+      if (lastEntry.lot) document.getElementById('ccp3-lot').value = lastEntry.lot;
+      if (!document.getElementById('ccp3-date').value) {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('ccp3-date').value = today;
+      }
+      updateCCP3Progress();
+    }
+
+    function validateCCP3Field(field) {
+      const value = field.value.trim();
+      const isRequired = field.hasAttribute('required') || field.closest('.form-group').querySelector('label').textContent.includes('*');
+      const formGroup = field.closest('.form-group');
+      const oldMessage = formGroup.querySelector('.validation-message');
+      if (oldMessage) oldMessage.remove();
+
+      if (isRequired && !value) {
+        formGroup.classList.add('has-error');
+        formGroup.classList.remove('has-success');
+        return false;
+      }
+
+      if (value) {
+        formGroup.classList.add('has-success');
+        formGroup.classList.remove('has-error');
+        return true;
+      }
+      return true;
+    }
+
+    function updateCCP3Progress() {
+      const requiredFields = ['ccp3-date', 'ccp3-lot', 'ccp3-start-time', 'ccp3-end-time', 'ccp3-duration', 'ccp3-temperature', 'ccp3-state'];
+      let completed = 0;
+      requiredFields.forEach(id => {
+        const field = document.getElementById(id);
+        if (field && field.value && field.value.trim()) completed++;
+      });
+      const percentage = Math.round((completed / requiredFields.length) * 100);
+      const progressBar = document.getElementById('ccp3-progress-bar');
+      const progressText = document.getElementById('ccp3-progress-text');
+      if (progressBar) progressBar.style.width = percentage + '%';
+      if (progressText) progressText.textContent = percentage + '%';
+    }
+
+    // ==========================================
+    // CCP4 FUNCTIONS
+    // ==========================================
+    function loadCCP4Defaults() {
+      const lastEntry = JSON.parse(localStorage.getItem('ccp4-last-entry') || '{}');
+      if (lastEntry.date) document.getElementById('ccp4-date').value = lastEntry.date;
+      if (lastEntry.lot) document.getElementById('ccp4-lot').value = lastEntry.lot;
+      if (!document.getElementById('ccp4-date').value) {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('ccp4-date').value = today;
+      }
+      updateCCP4Progress();
+    }
+
+    function validateCCP4Field(field) {
+      const value = field.value.trim();
+      const isRequired = field.hasAttribute('required') || field.closest('.form-group').querySelector('label').textContent.includes('*');
+      const formGroup = field.closest('.form-group');
+      const oldMessage = formGroup.querySelector('.validation-message');
+      if (oldMessage) oldMessage.remove();
+
+      if (isRequired && !value) {
+        formGroup.classList.add('has-error');
+        formGroup.classList.remove('has-success');
+        return false;
+      }
+
+      if (value && (field.id === 'ccp4-date')) {
+        const date = new Date(value);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        if (date > today) {
+          formGroup.classList.add('has-error');
+          const msg = document.createElement('div');
+          msg.className = 'validation-message error';
+          msg.textContent = '❌ La date ne peut pas être dans le futur';
+          formGroup.appendChild(msg);
+          return false;
+        }
+      }
+
+      if (value) {
+        formGroup.classList.add('has-success');
+        formGroup.classList.remove('has-error');
+        return true;
+      }
+      return true;
+    }
+
+    function updateCCP4Progress() {
+      const requiredFields = ['ccp4-date', 'ccp4-lot', 'ccp4-flour', 'ccp4-milk', 'ccp4-sugar', 'ccp4-oil', 'ccp4-peanut'];
+      let completed = 0;
+      requiredFields.forEach(id => {
+        const field = document.getElementById(id);
+        if (field && field.value && field.value.trim()) completed++;
+      });
+      const percentage = Math.round((completed / requiredFields.length) * 100);
+      const progressBar = document.getElementById('ccp4-progress-bar');
+      const progressText = document.getElementById('ccp4-progress-text');
+      if (progressBar) progressBar.style.width = percentage + '%';
+      if (progressText) progressText.textContent = percentage + '%';
+    }
+
+    // ==========================================
+    // CCP7 FUNCTIONS
+    // ==========================================
+    function loadCCP7Defaults() {
+      const lastEntry = JSON.parse(localStorage.getItem('ccp7-last-entry') || '{}');
+      if (lastEntry.date) document.getElementById('ccp7-date').value = lastEntry.date;
+      if (lastEntry.lot) document.getElementById('ccp7-lot').value = lastEntry.lot;
+      if (lastEntry.pots) document.getElementById('ccp7-pots').value = lastEntry.pots;
+      if (lastEntry.quantity) document.getElementById('ccp7-quantity').value = lastEntry.quantity;
+      if (!document.getElementById('ccp7-date').value) {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('ccp7-date').value = today;
+      }
+      updateCCP7Progress();
+    }
+
+    function validateCCP7Field(field) {
+      const value = field.value.trim();
+      const isRequired = field.hasAttribute('required') || field.closest('.form-group').querySelector('label').textContent.includes('*');
+      const formGroup = field.closest('.form-group');
+      const oldMessage = formGroup.querySelector('.validation-message');
+      if (oldMessage) oldMessage.remove();
+
+      if (isRequired && !value) {
+        formGroup.classList.add('has-error');
+        formGroup.classList.remove('has-success');
+        return false;
+      }
+
+      if (value && (field.id === 'ccp7-date')) {
+        const date = new Date(value);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        if (date > today) {
+          formGroup.classList.add('has-error');
+          const msg = document.createElement('div');
+          msg.className = 'validation-message error';
+          msg.textContent = '❌ La date ne peut pas être dans le futur';
+          formGroup.appendChild(msg);
+          return false;
+        }
+      }
+
+      if (value) {
+        formGroup.classList.add('has-success');
+        formGroup.classList.remove('has-error');
+        return true;
+      }
+      return true;
+    }
+
+    function updateCCP7Progress() {
+      const requiredFields = ['ccp7-date', 'ccp7-lot', 'ccp7-pots', 'ccp7-quantity'];
+      let completed = 0;
+      requiredFields.forEach(id => {
+        const field = document.getElementById(id);
+        if (field && field.value && field.value.trim()) completed++;
+      });
+      const percentage = Math.round((completed / requiredFields.length) * 100);
+      const progressBar = document.getElementById('ccp7-progress-bar');
+      const progressText = document.getElementById('ccp7-progress-text');
+      if (progressBar) progressBar.style.width = percentage + '%';
+      if (progressText) progressText.textContent = percentage + '%';
+    }
+
+    // PHASE 1: CCP5 & CCP6 FORM IMPROVEMENTS (Supervisor Forms)
+    function loadCCP5Defaults() {
+      const lastEntry = JSON.parse(localStorage.getItem('ccp5-last-entry') || '{}');
+      if (lastEntry.date) document.getElementById('ccp5-date').value = lastEntry.date;
+      if (lastEntry.lot) document.getElementById('ccp5-lot').value = lastEntry.lot;
+      if (!document.getElementById('ccp5-date').value) {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('ccp5-date').value = today;
+      }
+      updateCCP5Progress();
+    }
+
+    function validateCCP5Field(field) {
+      const value = field.value.trim();
+      const isRequired = field.hasAttribute('required') || field.closest('.form-group').querySelector('label').textContent.includes('*');
+      const formGroup = field.closest('.form-group');
+      const oldMessage = formGroup.querySelector('.validation-message');
+      if (oldMessage) oldMessage.remove();
+
+      if (isRequired && !value) {
+        formGroup.classList.add('has-error');
+        formGroup.classList.remove('has-success');
+        return false;
+      }
+
+      if (value) {
+        formGroup.classList.add('has-success');
+        formGroup.classList.remove('has-error');
+        return true;
+      }
+      return true;
+    }
+
+    function updateCCP5Progress() {
+      const requiredFields = ['ccp5-date', 'ccp5-lot', 'ccp5-quantity'];
+      let completed = 0;
+      requiredFields.forEach(id => {
+        const field = document.getElementById(id);
+        if (field && field.value && field.value.trim()) completed++;
+      });
+      const percentage = Math.round((completed / requiredFields.length) * 100);
+      const progressBar = document.getElementById('ccp5-progress-bar');
+      const progressText = document.getElementById('ccp5-progress-text');
+      if (progressBar) progressBar.style.width = percentage + '%';
+      if (progressText) progressText.textContent = percentage + '%';
+    }
+
+    function loadCCP6Defaults() {
+      const lastEntry = JSON.parse(localStorage.getItem('ccp6-last-entry') || '{}');
+      if (lastEntry.date) document.getElementById('ccp6-date').value = lastEntry.date;
+      if (lastEntry.lot) document.getElementById('ccp6-lot').value = lastEntry.lot;
+      if (!document.getElementById('ccp6-date').value) {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('ccp6-date').value = today;
+      }
+      updateCCP6Progress();
+    }
+
+    function validateCCP6Field(field) {
+      const value = field.value.trim();
+      const isRequired = field.hasAttribute('required') || field.closest('.form-group').querySelector('label').textContent.includes('*');
+      const formGroup = field.closest('.form-group');
+      const oldMessage = formGroup.querySelector('.validation-message');
+      if (oldMessage) oldMessage.remove();
+
+      if (isRequired && !value) {
+        formGroup.classList.add('has-error');
+        formGroup.classList.remove('has-success');
+        return false;
+      }
+
+      if (value) {
+        formGroup.classList.add('has-success');
+        formGroup.classList.remove('has-error');
+        return true;
+      }
+      return true;
+    }
+
+    function updateCCP6Progress() {
+      const requiredFields = ['ccp6-date', 'ccp6-lot', 'ccp6-quantity'];
+      let completed = 0;
+      requiredFields.forEach(id => {
+        const field = document.getElementById(id);
+        if (field && field.value && field.value.trim()) completed++;
+      });
+      const percentage = Math.round((completed / requiredFields.length) * 100);
+      const progressBar = document.getElementById('ccp6-progress-bar');
+      const progressText = document.getElementById('ccp6-progress-text');
+      if (progressBar) progressBar.style.width = percentage + '%';
+      if (progressText) progressText.textContent = percentage + '%';
+    }
+
+    // Dashboard: Track form submissions and metrics
+    let submissions = JSON.parse(localStorage.getItem('cigal-submissions')) || [];
+
+    function recordSubmission(ccp, decision, supplier, product) {
+      const submission = {
+        id: Date.now(),
+        timestamp: new Date().toLocaleString('fr-FR'),
+        ccp: ccp,
+        decision: decision,
+        supplier: supplier,
+        product: product
+      };
+      submissions.push(submission);
+      localStorage.setItem('cigal-submissions', JSON.stringify(submissions));
+      updateDashboard();
+    }
+
+    // PHASE 2: Dashboard Update Functions
+    function updateDashboard() {
+      // Update timestamp
+      const now = new Date();
+      const timeStr = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+      const timestampEl = document.getElementById('dashboard-timestamp');
+      if (timestampEl) timestampEl.textContent = timeStr;
+
+      // Calculate metrics for all CCPs
+      const metrics = {};
+      const allCCPs = ['CCP1', 'CCP2', 'CCP3', 'CCP4', 'CCP5', 'CCP6', 'CCP7'];
+
+      allCCPs.forEach(ccp => {
+        const ccpSubmissions = submissions.filter(s => s.ccp === ccp);
+        metrics[ccp] = {
+          accepted: ccpSubmissions.filter(s => s.decision === 'ACCEPTER' || s.decision === 'CONFORME').length,
+          quarantine: ccpSubmissions.filter(s => s.decision === 'QUARANTAINE' || s.decision === 'À VÉRIFIER').length,
+          rejected: ccpSubmissions.filter(s => s.decision === 'REFUSER' || s.decision === 'NON CONFORME' || s.decision === 'REJETÉ').length,
+          total: ccpSubmissions.length,
+          submissions: ccpSubmissions,
+          lastSubmission: ccpSubmissions.length > 0 ? ccpSubmissions[ccpSubmissions.length - 1].timestamp : null
+        };
+      });
+
+      // UPDATE 1: CCP Status Cards with Visual Indicators
+      const ccpNames = {'CCP1': 'Réception', 'CCP2': 'Torréfaction', 'CCP3': 'Refroidissement', 'CCP4': 'Mélange', 'CCP5': 'Mouture', 'CCP6': 'Tamisage', 'CCP7': 'Conditionnement'};
+      allCCPs.forEach(ccp => {
+        const statusCard = document.getElementById(ccp + '-status-card');
+        if (!statusCard) return;
+
+        const m = metrics[ccp];
+        let statusColor = '#2D7A4A'; // Green - good
+        let statusText = '● EN LIGNE';
+
+        if (m.total > 0) {
+          const conformityRate = (m.accepted / m.total) * 100;
+          if (conformityRate < 85) {
+            statusColor = '#B84C4C'; // Red - problem
+            statusText = '● ATTENTION';
+          } else if (conformityRate < 95) {
+            statusColor = '#B8860B'; // Amber - caution
+            statusText = '● À VÉRIFIER';
+          }
+        }
+
+        statusCard.style.borderColor = statusColor;
+        statusCard.querySelector('div:nth-child(3)').style.color = statusColor;
+        statusCard.querySelector('div:nth-child(3)').textContent = statusText;
+
+        const lastSubEl = statusCard.querySelector('div:nth-child(4)');
+        if (m.lastSubmission) {
+          lastSubEl.textContent = 'Dern. : ' + m.lastSubmission.split(' ')[1] || m.lastSubmission;
+        }
+      });
+
+      // UPDATE 2: Critical Alerts Section - Red on Top
+      const alertedSubmissions = submissions.filter(s => s.decision.includes('REJET') || s.decision.includes('À VÉRIFIER') || s.decision.includes('ISOLÉ'));
+      const criticalAlertsEl = document.getElementById('critical-alerts-phase2');
+      if (criticalAlertsEl) {
+        if (alertedSubmissions.length > 0) {
+          const recentAlerts = alertedSubmissions.slice(-3).reverse();
+          criticalAlertsEl.innerHTML = recentAlerts.map(alert => `
+            <div style="padding: 12px 16px; background: ${alert.decision.includes('REJET') ? 'rgba(184, 76, 76, 0.1)' : 'rgba(184, 134, 11, 0.1)'}; border-left: 4px solid ${alert.decision.includes('REJET') ? '#B84C4C' : '#B8860B'}; border-radius: 4px;">
+              <div style="font-weight: 600; color: ${alert.decision.includes('REJET') ? '#B84C4C' : '#B8860B'}; font-size: 13px;">✗ ${ccpNames[alert.ccp]} - ${alert.decision}</div>
+              <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Fournisseur: ${alert.supplier || '-'} | Produit: ${alert.product || '-'}</div>
+            </div>
+          `).join('');
+        } else {
+          criticalAlertsEl.innerHTML = `<div style="padding: 12px 16px; background: rgba(45, 122, 74, 0.1); border-left: 4px solid #2D7A4A; border-radius: 4px;">
+            <div style="font-weight: 600; color: #2D7A4A; font-size: 13px;">✓ Aucune alerte critique</div>
+            <div style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">Tous les lots en conformité. Bonne qualité!</div>
+          </div>`;
+        }
+      }
+
+      // UPDATE 3: Quality Performance Bars (Visual instead of percentages)
+      const perfCCPs = ['CCP1', 'CCP2', 'CCP3', 'CCP4', 'CCP7'];
+      perfCCPs.forEach(ccp => {
+        const m = metrics[ccp];
+        const percentage = m.total > 0 ? Math.round((m.accepted / m.total) * 100) : 0;
+
+        const perfPctEl = document.getElementById(ccp + '-perf-pct');
+        const perfBarEl = document.getElementById(ccp + '-perf-bar');
+        const perfTextEl = document.getElementById(ccp + '-perf-text');
+
+        if (perfPctEl) perfPctEl.textContent = percentage + '%';
+        if (perfBarEl) perfBarEl.style.width = percentage + '%';
+        if (perfTextEl) {
+          if (m.total > 0) {
+            perfTextEl.textContent = `${m.accepted}✓ / ${m.total} (${m.quarantine} ⚠️ ${m.rejected}✗)`;
+          } else {
+            perfTextEl.textContent = 'Aucune donnée';
+          }
+        }
+      });
+
+      // Overall performance bar
+      const totalAccepted = Object.values(metrics).reduce((sum, m) => sum + m.accepted, 0);
+      const totalSubmissions = Object.values(metrics).reduce((sum, m) => sum + m.total, 0);
+      const overallPercentage = totalSubmissions > 0 ? Math.round((totalAccepted / totalSubmissions) * 100) : 0;
+
+      const overallPctEl = document.getElementById('overall-perf-pct');
+      const overallBarEl = document.getElementById('overall-perf-bar');
+      const overallTextEl = document.getElementById('overall-perf-text');
+
+      if (overallPctEl) overallPctEl.textContent = overallPercentage + '%';
+      if (overallBarEl) overallBarEl.style.width = overallPercentage + '%';
+      if (overallTextEl) {
+        if (totalSubmissions > 0) {
+          const totalQuarantine = Object.values(metrics).reduce((sum, m) => sum + m.quarantine, 0);
+          const totalRejected = Object.values(metrics).reduce((sum, m) => sum + m.rejected, 0);
+          overallTextEl.textContent = `${totalAccepted}✓ / ${totalSubmissions} (${totalQuarantine} ⚠️ ${totalRejected}✗)`;
+        } else {
+          overallTextEl.textContent = 'Aucune donnée';
+        }
+      }
+
+      // UPDATE 4: Supplier Reliability Badges
+      const suppliers = JSON.parse(localStorage.getItem('cigal-suppliers') || '[]');
+      const supplierReliabilityEl = document.getElementById('supplier-reliability-phase2');
+      if (supplierReliabilityEl && suppliers.length > 0) {
+        const supplierStats = {};
+        submissions.forEach(s => {
+          if (!supplierStats[s.supplier]) {
+            supplierStats[s.supplier] = { accepted: 0, total: 0 };
+          }
+          supplierStats[s.supplier].total++;
+          if (s.decision === 'ACCEPTER' || s.decision === 'CONFORME') {
+            supplierStats[s.supplier].accepted++;
+          }
+        });
+
+        supplierReliabilityEl.innerHTML = Object.entries(supplierStats).map(([supplierName, stats]) => {
+          const reliability = Math.round((stats.accepted / stats.total) * 100);
+          const statusColor = reliability >= 95 ? '#2D7A4A' : reliability >= 80 ? '#B8860B' : '#B84C4C';
+          const statusBadge = reliability >= 95 ? '✓ Fiable' : reliability >= 80 ? '⚠️ À Surveiller' : '✗ Problème';
+          return `
+            <div style="padding: 12px; background: var(--accent-light); border-radius: 8px; border-left: 4px solid ${statusColor};">
+              <div style="font-weight: 600; font-size: 13px; color: var(--text-primary);">${supplierName}</div>
+              <div style="display: flex; justify-content: space-between; margin-top: 8px; align-items: center;">
+                <div style="font-size: 20px; font-weight: 700; color: ${statusColor};">${reliability}%</div>
+                <div style="font-size: 11px; font-weight: 600; color: ${statusColor};">${statusBadge}</div>
+              </div>
+              <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">${stats.accepted}/${stats.total} conformes</div>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
+    function updateDashboardOldFormat() {
+      // Keep old table format for reference if needed
+      const metrics = {};
+      const ccps = ['CCP1', 'CCP2', 'CCP3', 'CCP4', 'CCP7'];
+
+      ccps.forEach(ccp => {
+        const ccpSubmissions = submissions.filter(s => s.ccp === ccp);
+        metrics[ccp] = {
+          accepted: ccpSubmissions.filter(s => s.decision === 'ACCEPTER' || s.decision === 'CONFORME').length,
+          quarantine: ccpSubmissions.filter(s => s.decision === 'QUARANTAINE').length,
+          rejected: ccpSubmissions.filter(s => s.decision === 'REFUSER' || s.decision === 'NON CONFORME' || s.decision === 'REJETÉ').length,
+          total: ccpSubmissions.length,
+          submissions: ccpSubmissions
+        };
+      });
+
+      // Old table body update
+      const tbody = document.getElementById('ccp-perf-tbody');
+      if (!tbody) return; // Table doesn't exist in new layout
+      tbody.innerHTML = '';
+      ccps.forEach(ccp => {
+        const m = metrics[ccp];
+        const conformityRate = m.total > 0
+          ? Math.round((m.accepted / m.total) * 100)
+          : null;
+
+        // Calculate trend: compare first half vs second half of submissions
+        let trend = '→'; // default: stable
+        let trendColor = 'var(--text-secondary)';
+        if (m.submissions.length >= 4) {
+          const midpoint = Math.floor(m.submissions.length / 2);
+          const firstHalf = m.submissions.slice(0, midpoint);
+          const secondHalf = m.submissions.slice(midpoint);
+          const firstRate = firstHalf.filter(s => s.decision === 'ACCEPTER' || s.decision === 'CONFORME').length / firstHalf.length;
+          const secondRate = secondHalf.filter(s => s.decision === 'ACCEPTER' || s.decision === 'CONFORME').length / secondHalf.length;
+          if (secondRate > firstRate + 0.1) {
+            trend = '↑ Amélioration';
+            trendColor = 'var(--phase1)';
+          } else if (secondRate < firstRate - 0.1) {
+            trend = '↓ Déclin';
+            trendColor = '#B84C4C';
+          }
+        }
+
+        const row = document.createElement('tr');
+        row.style.borderBottom = '1px solid var(--border-color)';
+        row.innerHTML = `
+          <td style="padding: 10px;">${{'CCP1': 'Réception Matières Premières', 'CCP2': 'Torréfaction', 'CCP3': 'Refroidissement', 'CCP4': 'Mélange des Ingrédients', 'CCP7': 'Conditionnement Final'}[ccp]}</td>
+          <td style="padding: 10px; text-align: center; color: var(--phase1); font-weight: 600;">${m.accepted}</td>
+          <td style="padding: 10px; text-align: center; color: var(--phase2); font-weight: 600;">${m.quarantine}</td>
+          <td style="padding: 10px; text-align: center; color: #B84C4C; font-weight: 600;">${m.rejected}</td>
+          <td style="padding: 10px; text-align: center; font-weight: 600; color: ${conformityRate === null ? 'var(--text-secondary)' : (conformityRate >= 80 ? 'var(--phase1)' : conformityRate >= 50 ? 'var(--phase2)' : '#B84C4C')};">${conformityRate !== null ? conformityRate + '%' : '--'}</td>
+          <td style="padding: 10px; text-align: center; font-weight: 600; color: ${trendColor};">${trend}</td>
+        `;
+        tbody.appendChild(row);
+      });
+
+      // Update supplier performance with reliability score
+      const supplierStats = {};
+      submissions.forEach(s => {
+        if (!supplierStats[s.supplier]) {
+          supplierStats[s.supplier] = { accepted: 0, rejected: 0, quarantine: 0, total: 0 };
+        }
+        if (s.decision === 'ACCEPTER' || s.decision === 'CONFORME') supplierStats[s.supplier].accepted++;
+        else if (s.decision === 'REJETÉ' || s.decision === 'REFUSER' || s.decision === 'NON CONFORME') supplierStats[s.supplier].rejected++;
+        else supplierStats[s.supplier].quarantine++;
+        supplierStats[s.supplier].total++;
+      });
+
+      // Sort suppliers by reliability (worst first)
+      const sortedSuppliers = Object.entries(supplierStats)
+        .map(([name, stats]) => ({
+          name,
+          ...stats,
+          reliability: stats.total > 0 ? Math.round((stats.accepted / stats.total) * 100) : 0
+        }))
+        .sort((a, b) => a.reliability - b.reliability);
+
+      const supplierHtml = sortedSuppliers.length > 0
+        ? `<table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+             <thead>
+               <tr style="background: var(--accent-light); border-bottom: 2px solid var(--border-color);">
+                 <th style="padding: 10px; text-align: left; font-weight: 600;">Fournisseur</th>
+                 <th style="padding: 10px; text-align: center; font-weight: 600;">Fiabilité</th>
+                 <th style="padding: 10px; text-align: center; font-weight: 600;">✓ OK</th>
+                 <th style="padding: 10px; text-align: center; font-weight: 600;">⚠️ Quarantaine</th>
+                 <th style="padding: 10px; text-align: center; font-weight: 600;">✗ Rejeté</th>
+                 <th style="padding: 10px; text-align: center; font-weight: 600;">Statut</th>
+               </tr>
+             </thead>
+             <tbody>
+               ${sortedSuppliers.map(supplier => {
+                 let statusColor = 'var(--phase1)';
+                 let statusLabel = '✓ Fiable';
+                 if (supplier.reliability < 50) {
+                   statusColor = '#B84C4C';
+                   statusLabel = '✗ À VÉRIFIER';
+                 } else if (supplier.reliability < 80) {
+                   statusColor = 'var(--phase2)';
+                   statusLabel = '⚠️ Attention';
+                 }
+                 return `
+                   <tr style="border-bottom: 1px solid var(--border-color);">
+                     <td style="padding: 10px;">${supplier.name}</td>
+                     <td style="padding: 10px; text-align: center; font-weight: 700; color: ${statusColor};">${supplier.reliability}%</td>
+                     <td style="padding: 10px; text-align: center; color: var(--phase1);">${supplier.accepted}</td>
+                     <td style="padding: 10px; text-align: center; color: var(--phase2);">${supplier.quarantine}</td>
+                     <td style="padding: 10px; text-align: center; color: #B84C4C;">${supplier.rejected}</td>
+                     <td style="padding: 10px; text-align: center; font-weight: 600; color: ${statusColor};">${statusLabel}</td>
+                   </tr>
+                 `;
+               }).join('')}
+             </tbody>
+           </table>`
+        : '<p>Aucun fournisseur avec données de conformité. <a onclick="switchTab(\'suppliers\')" style="color: var(--phase1); cursor: pointer;">Gérer les fournisseurs →</a></p>';
+
+      document.getElementById('supplier-performance').innerHTML = supplierHtml;
+    }
+
+    // Initialize dashboard on page load
+    updateDashboard();
+
+    // Update supplier dropdown when suppliers change
+    function updateSupplierDropdown() {
+      const dropdown = document.getElementById('ccp1-supplier');
+      const currentValue = dropdown.value;
+      dropdown.innerHTML = '<option value="">-- Sélectionner un fournisseur --</option>';
+      suppliers.forEach(s => {
+        const option = document.createElement('option');
+        option.value = s.name;
+        option.textContent = `${s.name} - ${s.products}`;
+        dropdown.appendChild(option);
+      });
+      dropdown.value = currentValue;
+    }
+
+    // Update dropdown on first load
+    updateSupplierDropdown();
+
+    // Override addSupplier to also update dropdown
+    const originalAddSupplier = window.addSupplier;
+    window.addSupplier = function() {
+      originalAddSupplier();
+      updateSupplierDropdown();
+    };
 
     // Set all inputs to the same state
     document.querySelectorAll('input, select, textarea').forEach(el => {
