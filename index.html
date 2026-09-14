@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Système de Formulaires CIGAL - Tous les CCPs</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <style>
+    :root {
+      --bg-primary: #FAFAF8;
+      --bg-secondary: #F0F0EA;
+      --text-primary: #1A1A18;
+      --text-secondary: #666661;
+      --border-color: #E8E8E3;
+      --phase1: #2D7A4A;
+      --phase2: #B8860B;
+      --phase3: #5B7C99;
+      --accent-light: #F5F5F0;
+      --focus: #4A9E5A;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg-primary: #1A1918;
+        --bg-secondary: #2A2925;
+        --text-primary: #F5F5F0;
+        --text-secondary: #B8B8B0;
+        --border-color: #3A3930;
+        --phase1: #5FB876;
+        --phase2: #D4A041;
+        --phase3: #7BA3C8;
+        --accent-light: #2A2925;
+        --focus: #4FCF68;
+      }
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #1A1918;
+      --bg-secondary: #2A2925;
+      --text-primary: #F5F5F0;
+      --text-secondary: #B8B8B0;
+      --border-color: #3A3930;
+      --phase1: #5FB876;
+      --phase2: #D4A041;
+      --phase3: #7BA3C8;
+      --accent-light: #2A2925;
+      --focus: #4FCF68;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    header {
+      margin-bottom: 32px;
+      text-align: center;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .header-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* Workflow Diagram */
+    .workflow-container {
+      margin: 32px 0;
+      padding: 24px;
+      background: var(--accent-light);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .workflow-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .workflow {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .workflow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      min-width: 140px;
+      padding: 12px;
+      border-radius: 6px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .workflow-step:hover {
+      transform: translateY(-2px);
+      border-color: var(--phase1);
+    }
+
+    .workflow-step.phase1 {
+      border-left: 4px solid var(--phase1);
+    }
+
+    .workflow-step.phase2 {
+      border-left: 4px solid var(--phase2);
+    }
+
+    .workflow-step.phase3 {
+      border-left: 4px solid var(--phase3);
+    }
+
+    .step-number {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text-primary);
+    }
+
+    .step-name {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .step-status {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      background: var(--accent-light);
+    }
+
+    .status-ready {
+      background: rgba(45, 122, 74, 0.15);
+      color: var(--phase1);
+    }
+
+    .status-pending {
+      background: rgba(184, 134, 11, 0.15);
+      color: var(--phase2);
+    }
+
+    .status-future {
+      background: rgba(91, 124, 153, 0.15);
+      color: var(--phase3);
+    }
+
+    /* Tabs */
+    .tabs-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--border-color);
+      margin-bottom: 32px;
+      overflow-x: auto;
+    }
+
+    .tab-button {
+      padding: 12px 16px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .tab-button:hover {
+      color: var(--text-primary);
+    }
+
+    .tab-button.active {
+      color: var(--text-primary);
+      border-bottom-color: var(--phase1);
+    }
+
+    .tab-button.phase2-tab.active {
+      border-bottom-color: var(--phase2);
+    }
+
+    .tab-button.phase3-tab.active {
+      border-bottom-color: var(--phase3);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Form Sections */
+    .form-container {
+      max-width: 700px;
+    }
+
+    .form-header {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    .form-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .form-description {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .section {
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .label-required {
+      color: #B84C4C;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="number"],
+    select,
+    textarea {
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+    }
+
+    input[type="text"]:focus,
+    input[type="date"]:focus,
+    input[type="number"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--focus);
+      box-shadow: 0 0 0 3px rgba(74, 158, 90, 0.1);
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px;
+      border-radius: 4px;
+      background: var(--accent-light);
+      cursor: pointer;
+    }
+
+    .checkbox-item input[type="checkbox"] {
+      margin-top: 4px;
+      cursor: pointer;
+      accent-color: var(--phase1);
+    }
+
+    .checkbox-label {
+      font-size: 14px;
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+
+    .phase-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .phase1-badge {
+      background: rgba(45, 122, 74, 0.15);
+      color: var(--phase1);
+    }
+
+    .phase2-badge {
+      background: rgba(184, 134, 11, 0.15);
+      color: var(--phase2);
+    }
+
+    .phase3-badge {
+      background: rgba(91, 124, 153, 0.15);
+      color: var(--phase3);
+    }
+
+    .info-box {
+      padding: 12px;
+      background: var(--accent-light);
+      border-left: 4px solid var(--phase2);
+      border-radius: 4px;
+      font-size: 13px;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .info-box.future {
+      border-left-color: var(--phase3);
+    }
+
+    @media (max-width: 768px) {
+      .workflow {
+        flex-wrap: wrap;
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+
+      .tabs-nav {
+        flex-wrap: wrap;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Système de Formulaires CIGAL</h1>
+      <p class="header-subtitle">Tous les Points Critiques de Contrôle (CCPs) – Production de Farine Infantile</p>
+    </header>
+
+    <!-- Workflow Diagram -->
+    <div class="workflow-container">
+      <div class="workflow-title">📊 Flux de Production</div>
+      <div class="workflow">
+        <div class="workflow-step phase1" onclick="switchTab('ccp1')">
+          <div class="step-number">1</div>
+          <div class="step-name">Réception</div>
+          <div class="step-status status-ready">Phase 1</div>
+        </div>
+        <div class="workflow-step phase2" onclick="switchTab('ccp2')">
+          <div class="step-number">2</div>
+          <div class="step-name">Torréfaction</div>
+          <div class="step-status status-pending">Phase 2</div>
+        </div>
+        <div class="workflow-step phase2" onclick="switchTab('ccp3')">
+          <div class="step-number">3</div>
+          <div class="step-name">Refroidissement</div>
+          <div class="step-status status-pending">Phase 2</div>
+        </div>
+        <div class="workflow-step phase1" onclick="switchTab('ccp4')">
+          <div class="step-number">4</div>
+          <div class="step-name">Mélange</div>
+          <div class="step-status status-ready">Phase 1</div>
+        </div>
+        <div class="workflow-step phase3" onclick="switchTab('ccp5')">
+          <div class="step-number">5</div>
+          <div class="step-name">Mouture</div>
+          <div class="step-status status-future">Phase 3</div>
+        </div>
+        <div class="workflow-step phase3" onclick="switchTab('ccp6')">
+          <div class="step-number">6</div>
+          <div class="step-name">Tamisage</div>
+          <div class="step-status status-future">Phase 3</div>
+        </div>
+        <div class="workflow-step phase1" onclick="switchTab('ccp7')">
+          <div class="step-number">7</div>
+          <div class="step-name">Conditionnement</div>
+          <div class="step-status status-ready">Phase 1</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs Navigation -->
+    <div class="tabs-nav">
+      <button class="tab-button active" onclick="switchTab('ccp1')">CCP1 – Réception</button>
+      <button class="tab-button phase2-tab" onclick="switchTab('ccp2')">CCP2 – Torréfaction</button>
+      <button class="tab-button phase2-tab" onclick="switchTab('ccp3')">CCP3 – Refroidissement</button>
+      <button class="tab-button active" onclick="switchTab('ccp4')">CCP4 – Mélange</button>
+      <button class="tab-button phase3-tab" onclick="switchTab('ccp5')">CCP5 – Mouture</button>
+      <button class="tab-button phase3-tab" onclick="switchTab('ccp6')">CCP6 – Tamisage</button>
+      <button class="tab-button active" onclick="switchTab('ccp7')">CCP7 – Conditionnement</button>
+    </div>
+
+    <!-- CCP1: Reception -->
+    <div id="ccp1" class="tab-content active">
+      <div class="form-container">
+        <div class="form-header">
+          <div class="phase-badge phase1-badge">🚀 Phase 1 – Prêt à l'implémentation</div>
+          <h2 class="form-title">CCP1 – Réception Matières Premières</h2>
+          <p class="form-description">Contrôle d'entrée des matières premières. Équipe qualité. À faire à chaque réception.</p>
+        </div>
+
+        <div class="section">
+          <div class="section-title">📦 Informations de Livraison</div>
+          <div class="form-group">
+            <label>Date de réception <span class="label-required">*</span></label>
+            <input type="date" value="2025-09-14">
+          </div>
+          <div class="two-column">
+            <div class="form-group">
+              <label>Fournisseur <span class="label-required">*</span></label>
+              <select>
+                <option>Moulin Sénégal - Farine</option>
+                <option>Laiterie Dakar - Lait</option>
+                <option>Sucré & Co - Sucre</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Produit <span class="label-required">*</span></label>
+              <select>
+                <option selected>Farine</option>
+                <option>Lait en poudre</option>
+                <option>Sucre</option>
+                <option>Huile de palme</option>
+                <option>Pâte d'arachide</option>
+              </select>
+            </div>
+          </div>
+          <div class="two-column">
+            <div class="form-group">
+              <label>Quantité (kg) <span class="label-required">*</span></label>
+              <input type="text" value="50">
+            </div>
+            <div class="form-group">
+              <label>N° Lot <span class="label-required">*</span></label>
+              <input type="text" value="FL-2025-0847">
+            </div>
+          </div>
+          <div class="two-column">
+            <div class="form-group">
+              <label>Date de fabrication <span class="label-required">*</span></label>
+              <input type="date" value="2025-08-15">
+            </div>
+            <div class="form-group">
+              <label>Date d'expiration (DLC) <span class="label-required">*</span></label>
+              <input type="date" value="2025-11-15">
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">✓ Contrôles Visuels</div>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Sac/conteneur intact</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Étiquette lisible et correcte</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Pas de moisissure ou décoloration</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Pas de dégâts d'insectes</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Pas de corps étrangers</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Odeur acceptable</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">🎯 Décision</div>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="radio" name="decision-ccp1" checked>
+              <span class="checkbox-label"><strong>✓ ACCEPTER</strong> – Entreposer à: ______</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="radio" name="decision-ccp1">
+              <span class="checkbox-label"><strong>⚠️ QUARANTAINE</strong> – Raison: ______</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="radio" name="decision-ccp1">
+              <span class="checkbox-label"><strong>✗ REFUSER</strong> – Raison: ______</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CCP2: Torréfaction -->
+    <div id="ccp2" class="tab-content">
+      <div class="form-container">
+        <div class="form-header">
+          <div class="phase-badge phase2-badge">⏳ Phase 2 – Infrastructure en attente</div>
+          <h2 class="form-title">CCP2 – Torréfaction (Roasting)</h2>
+          <p class="form-description">Contrôle thermique pour inactivation de Salmonella. 100°C pendant 2 heures. Équipe production + QC.</p>
+        </div>
+
+        <div class="info-box">
+          ℹ️ <strong>Status:</strong> En attente de la livraison du torrefacteur avec contrôle de température. Actuellement: fiche de suivi papier simple tenue par la production, vérifiée quotidiennement par l'équipe QC.
+        </div>
+
+        <div class="section">
+          <div class="section-title">📦 Lots à Rôtir</div>
+          <div class="form-group">
+            <label>Date <span class="label-required">*</span></label>
+            <input type="date">
+          </div>
+          <div class="two-column">
+            <div class="form-group">
+              <label>N° Lot farine reçue <span class="label-required">*</span></label>
+              <input type="text" placeholder="Lien vers CCP1">
+            </div>
+            <div class="form-group">
+              <label>Quantité (kg) <span class="label-required">*</span></label>
+              <input type="text">
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">🌡️ Paramètres de Torréfaction</div>
+          <div class="info-box">
+            Cible: <strong>150°C pendant 18-25 minutes</strong> (pour farine de blé)
+          </div>
+          <div class="form-group">
+            <label>Température atteinte (°C) <span class="label-required">*</span></label>
+            <input type="number" value="150">
+          </div>
+          <div class="form-group">
+            <label>Temps total de torréfaction (minutes) <span class="label-required">*</span></label>
+            <input type="number" value="20">
+          </div>
+          <div class="form-group">
+            <label>Observation visuelle de couleur</label>
+            <select>
+              <option>Doré clair</option>
+              <option selected>Doré moyen</option>
+              <option>Doré foncé</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">✓ Contrôles</div>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Équipement propre avant utilisation</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Température maintenue stable</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Pas d'odeur de brûlé</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Décharge complète du tambour</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">🎯 Décision</div>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="radio" name="decision-ccp2" checked>
+              <span class="checkbox-label"><strong>✓ CONFORME</strong> – Procéder au refroidissement</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="radio" name="decision-ccp2">
+              <span class="checkbox-label"><strong>✗ NON CONFORME</strong> – Lot à isoler, raison: ______</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CCP3: Refroidissement -->
+    <div id="ccp3" class="tab-content">
+      <div class="form-container">
+        <div class="form-header">
+          <div class="phase-badge phase2-badge">⏳ Phase 2 – À planifier</div>
+          <h2 class="form-title">CCP3 – Refroidissement</h2>
+          <p class="form-description">Contrôle du temps et de la température de refroidissement. Protection contre la contamination aérienne. Équipe production.</p>
+        </div>
+
+        <div class="info-box">
+          ℹ️ <strong>Status:</strong> À intégrer après stabilisation du CCP2. Formule prévue: fiche de suivi simple avec chronomètre et mesure de température/humidité par QC.
+        </div>
+
+        <div class="section">
+          <div class="section-title">📦 Lot en Refroidissement</div>
+          <div class="form-group">
+            <label>N° Lot torréfié <span class="label-required">*</span></label>
+            <input type="text" placeholder="Lien vers CCP2">
+          </div>
+          <div class="two-column">
+            <div class="form-group">
+              <label>Heure début refroidissement</label>
+              <input type="text" placeholder="HH:MM">
+            </div>
+            <div class="form-group">
+              <label>Heure fin (≤30 min attendu)</label>
+              <input type="text" placeholder="HH:MM">
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">🌡️ Paramètres Observés</div>
+          <div class="form-group">
+            <label>Température finales (°C, < 25°C)</label>
+            <input type="number">
+          </div>
+          <div class="form-group">
+            <label>Humidité relative approximative (%)</label>
+            <input type="number">
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">✓ Contrôles</div>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox">
+              <span class="checkbox-label">Produit protégé de la poussière</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox">
+              <span class="checkbox-label">Pas d'insectes visibles</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox">
+              <span class="checkbox-label">Refroidissement complet en < 30 min</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CCP4: Mélange -->
+    <div id="ccp4" class="tab-content">
+      <div class="form-container">
+        <div class="form-header">
+          <div class="phase-badge phase1-badge">🚀 Phase 1 – Prêt à l'implémentation</div>
+          <h2 class="form-title">CCP4 – Mélange (Mixing)</h2>
+          <p class="form-description">Préparation des lots avec pesée et respect de la formulation. Vérification d'homogénéité. Équipe production/qualité.</p>
+        </div>
+
+        <div class="section">
+          <div class="section-title">📦 Préparation du Lot</div>
+          <div class="form-group">
+            <label>Date <span class="label-required">*</span></label>
+            <input type="date" value="2025-09-14">
+          </div>
+          <div class="form-group">
+            <label>N° Lot de production <span class="label-required">*</span></label>
+            <input type="text" value="PROD-2025-0051">
+          </div>
+          <div class="form-group">
+            <label>N° Lot farine torréfiée (CCP2) <span class="label-required">*</span></label>
+            <input type="text" placeholder="Lien vers CCP2">
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">⚖️ Pesée des Ingrédients</div>
+          <div class="info-box">
+            Formule cible pour 50 kg: Farine 35 kg | Lait 8 kg | Sucre 4 kg | Huile 2 kg | Pâte d'arachide 1 kg
+          </div>
+          <div class="two-column">
+            <div class="form-group">
+              <label>Farine (kg) [70%]</label>
+              <input type="number" value="35.0">
+            </div>
+            <div class="form-group">
+              <label>Lait en poudre (kg) [16%]</label>
+              <input type="number" value="8.0">
+            </div>
+          </div>
+          <div class="two-column">
+            <div class="form-group">
+              <label>Sucre (kg) [8%]</label>
+              <input type="number" value="4.0">
+            </div>
+            <div class="form-group">
+              <label>Huile de palme (kg) [4%]</label>
+              <input type="number" value="2.0">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Pâte d'arachide (kg) [2%]</label>
+            <input type="number" value="1.0">
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">✓ Contrôles</div>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Mélangeur propre avant utilisation</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Toutes pesées conformes à la recette</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Mélange homogène (pas de grumeaux)</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Couleur uniforme</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">🎯 Décision</div>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="radio" name="decision-ccp4" checked>
+              <span class="checkbox-label"><strong>✓ CONFORME</strong> – Procéder à la mouture</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="radio" name="decision-ccp4">
+              <span class="checkbox-label"><strong>✗ NON CONFORME</strong> – Lot à isoler, raison: ______</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CCP5: Mouture -->
+    <div id="ccp5" class="tab-content">
+      <div class="form-container">
+        <div class="form-header">
+          <div class="phase-badge phase3-badge">📋 Phase 3 – Infrastructure en attente</div>
+          <h2 class="form-title">CCP5 – Mouture (Grinding)</h2>
+          <p class="form-description">Contrôle de l'absence de fragments métalliques. Nettoyage du broyeur. Équipe production.</p>
+        </div>
+
+        <div class="info-box future">
+          ℹ️ <strong>Status:</strong> À implémenter après Phase 1 stabilisée. Formule: inspection visuelle avant/après mouture + fiche de maintenance du broyeur.
+        </div>
+
+        <div class="section">
+          <div class="section-title">📦 Lot à Moudre</div>
+          <div class="form-group">
+            <label>N° Lot mélange (CCP4)</label>
+            <input type="text" placeholder="Lien vers CCP4">
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">🔧 Contrôle Préalable du Broyeur</div>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox">
+              <span class="checkbox-label">Broyeur nettoyé et sec</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox">
+              <span class="checkbox-label">Aucune pièce cassée visible</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox">
+              <span class="checkbox-label">Aucun fragment métallique</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">✓ Après Mouture</div>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox">
+              <span class="checkbox-label">Produit moulu finement</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox">
+              <span class="checkbox-label">Pas de grumeaux</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox">
+              <span class="checkbox-label">Broyeur nettoyé après utilisation</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CCP6: Tamisage -->
+    <div id="ccp6" class="tab-content">
+      <div class="form-container">
+        <div class="form-header">
+          <div class="phase-badge phase3-badge">📋 Phase 3 – Infrastructure en attente</div>
+          <h2 class="form-title">CCP6 – Tamisage (Sieving)</h2>
+          <p class="form-description">Contrôle de l'intégrité du tamis. Absence de fragments métalliques. Élimination de la poussière. Équipe production.</p>
+        </div>
+
+        <div class="info-box future">
+          ℹ️ <strong>Status:</strong> À implémenter en Phase 3. Formule: inspection visuelle du tamis + observation du produit avant/après tamisage.
+        </div>
+
+        <div class="section">
+          <div class="section-title">📦 Lot à Tamiser</div>
+          <div class="form-group">
+            <label>N° Lot moulu (CCP5)</label>
+            <input type="text" placeholder="Lien vers CCP5">
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">✓ Contrôle du Tamis</div>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox">
+              <span class="checkbox-label">Tamis intact (pas de déchirures)</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox">
+              <span class="checkbox-label">Mailles régulières et propres</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox">
+              <span class="checkbox-label">Pas de résidus anciens</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">✓ Après Tamisage</div>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox">
+              <span class="checkbox-label">Produit homogène</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox">
+              <span class="checkbox-label">Pas de grumeaux</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox">
+              <span class="checkbox-label">Poussière éliminée</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox">
+              <span class="checkbox-label">Tamis nettoyé après utilisation</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CCP7: Conditionnement -->
+    <div id="ccp7" class="tab-content">
+      <div class="form-container">
+        <div class="form-header">
+          <div class="phase-badge phase1-badge">🚀 Phase 1 – Prêt à l'implémentation</div>
+          <h2 class="form-title">CCP7 – Conditionnement (Packaging)</h2>
+          <p class="form-description">Contrôle final avant expédition. Vérification d'intégrité, scellage, étiquetage. Équipe qualité.</p>
+        </div>
+
+        <div class="section">
+          <div class="section-title">📦 Lot à Conditionner</div>
+          <div class="form-group">
+            <label>Date <span class="label-required">*</span></label>
+            <input type="date" value="2025-09-14">
+          </div>
+          <div class="form-group">
+            <label>N° Lot tamisé (CCP6) <span class="label-required">*</span></label>
+            <input type="text" placeholder="Lien vers CCP6">
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">✓ Contrôles Préalables</div>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Équipement d'ensachage propre</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Sachets en bon état (pas de trous)</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Scelleur fonctionnel</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Étiquettes correctes et disponibles</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">📊 Vérification des Sachets</div>
+          <div class="form-group">
+            <label>Nombre de sachets de 50kg <span class="label-required">*</span></label>
+            <input type="number" value="10">
+          </div>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Poids correct (50kg ± 0.5kg)</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Scellage hermétique (pas d'ouvertures)</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Étiquette apposée correctement</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">N° Lot lisible sur étiquette</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" checked>
+              <span class="checkbox-label">Pas de dommages visibles</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">🎯 Décision Finale</div>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="radio" name="decision-ccp7" checked>
+              <span class="checkbox-label"><strong>✓ CONFORME</strong> – Prêt à la vente/livraison</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="radio"
