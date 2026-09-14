@@ -1019,4 +1019,41 @@
               <span class="checkbox-label"><strong>✓ CONFORME</strong> – Prêt à la vente/livraison</span>
             </label>
             <label class="checkbox-item">
-              <input type="radio"
+              <input type="radio" name="decision-ccp7">
+              <span class="checkbox-label"><strong>⚠️ DÉFAUT MINEUR</strong> – Raison: ______</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="radio" name="decision-ccp7">
+              <span class="checkbox-label"><strong>✗ REJETÉ</strong> – Raison: ______</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchTab(tabId) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
+
+      // Show selected tab
+      document.getElementById(tabId).classList.add('active');
+
+      // Highlight active button
+      document.querySelector(`[onclick="switchTab('${tabId}')"]`).classList.add('active');
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Set all inputs to the same state
+    document.querySelectorAll('input, select, textarea').forEach(el => {
+      el.addEventListener('change', function() {
+        console.log('Form updated:', this.name || this.type);
+      });
+    });
+  </script>
+</body>
+</html>
