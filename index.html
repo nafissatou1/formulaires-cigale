@@ -81,37 +81,147 @@
     }
 
     header {
-      margin-bottom: 32px;
-      text-align: center;
-      padding: 24px;
+      padding: 16px 24px;
       background: linear-gradient(135deg, #577e0a 0%, #466206 100%);
-      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 20px;
-      box-shadow: 0 4px 12px rgba(87, 126, 10, 0.15);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 24px;
     }
 
     .header-logo {
-      width: 80px;
-      height: 80px;
+      width: 60px;
+      height: 60px;
       object-fit: contain;
     }
 
     .header-content {
-      text-align: left;
+      display: none;
     }
 
     header h1 {
-      color: white;
-      font-size: 32px;
-      margin: 0;
+      display: none;
     }
 
     header .header-subtitle {
-      color: rgba(255, 255, 255, 0.95);
+      display: none;
+    }
+
+    /* Bottom Sticky Navigation */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, #577e0a 0%, #466206 100%);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      padding: 8px 0;
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .bottom-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 10px 12px;
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 12px;
       font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    .bottom-nav-item:hover,
+    .bottom-nav-item.active {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .bottom-nav-item.active {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .bottom-nav-icon {
+      font-size: 20px;
+    }
+
+    .bottom-nav-label {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    body {
+      padding-bottom: 70px;
+    }
+
+    /* Forms Submenu */
+    .forms-submenu {
+      display: none;
+      position: fixed;
+      bottom: 70px;
+      left: 0;
+      right: 0;
+      background: var(--bg-secondary);
+      border-top: 2px solid var(--border-color);
+      max-height: 60vh;
+      overflow-y: auto;
+      z-index: 99;
+      animation: slideUp 0.3s ease;
+    }
+
+    .forms-submenu.open {
+      display: block;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .forms-submenu-item {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-color);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: background 0.2s;
+    }
+
+    .forms-submenu-item:hover {
+      background: var(--accent-light);
+    }
+
+    .forms-submenu-item:active {
+      background: rgba(87, 126, 10, 0.1);
+    }
+
+    .forms-submenu-item-icon {
+      font-size: 18px;
+      min-width: 24px;
+    }
+
+    .forms-submenu-item-text {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
     }
 
     /* Mobile Hamburger Menu */
@@ -143,14 +253,14 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 280px;
+      width: 320px;
       height: 100vh;
       background: var(--bg-primary);
       z-index: 2;
       transform: translateX(-100%);
       transition: transform 0.3s ease;
       overflow-y: auto;
-      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+      box-shadow: 4px 0 16px rgba(0, 0, 0, 0.2);
     }
 
     .hamburger-menu.open .menu-drawer {
@@ -158,31 +268,40 @@
     }
 
     .menu-header {
-      padding: 16px;
-      border-bottom: 2px solid var(--border-color);
+      padding: 20px 16px;
+      background: linear-gradient(135deg, #577e0a 0%, #466206 100%);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0 2px 8px rgba(87, 126, 10, 0.2);
     }
 
     .menu-header h2 {
-      font-size: 18px;
+      font-size: 22px;
+      font-weight: 700;
       margin: 0;
-      color: var(--text-primary);
+      color: white;
+      letter-spacing: 0.5px;
     }
 
     .menu-close {
-      background: none;
+      background: rgba(255, 255, 255, 0.2);
       border: none;
-      font-size: 24px;
+      font-size: 28px;
       cursor: pointer;
-      color: var(--text-primary);
-      padding: 0;
-      width: 32px;
-      height: 32px;
+      color: white;
+      padding: 4px 8px;
+      width: 40px;
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    .menu-close:hover {
+      background: rgba(255, 255, 255, 0.3);
     }
 
     .menu-items {
@@ -190,50 +309,75 @@
     }
 
     .menu-item {
-      padding: 14px 16px;
+      padding: 16px 16px;
       display: block;
       background: none;
       border: none;
       text-align: left;
       cursor: pointer;
-      font-size: 15px;
+      font-size: 16px;
+      font-weight: 500;
       color: var(--text-primary);
       width: 100%;
-      transition: background 0.2s;
+      transition: all 0.2s;
       border-left: 4px solid transparent;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
     }
 
     .menu-item:hover,
     .menu-item:active {
-      background: rgba(87, 126, 10, 0.1);
+      background: rgba(87, 126, 10, 0.12);
+      padding-left: 20px;
     }
 
     .menu-item.active {
-      background: rgba(87, 126, 10, 0.15);
+      background: rgba(87, 126, 10, 0.2);
       border-left-color: var(--phase1);
-      font-weight: 600;
+      font-weight: 700;
       color: var(--phase1);
     }
 
     .menu-divider {
-      height: 1px;
+      height: 2px;
       background: var(--border-color);
-      margin: 8px 0;
+      margin: 12px 0;
     }
 
     .hamburger-button {
       display: none;
-      background: none;
-      border: none;
-      font-size: 24px;
+      background: rgba(255, 255, 255, 0.25);
+      border: 2px solid white;
+      font-size: 20px;
       cursor: pointer;
       color: white;
-      padding: 8px;
+      padding: 8px 12px;
       z-index: 10;
+      border-radius: 6px;
+      font-weight: 600;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      min-width: fit-content;
+    }
+
+    .hamburger-button:hover,
+    .hamburger-button:active {
+      background: rgba(255, 255, 255, 0.35);
+      transform: scale(1.05);
     }
 
     .hamburger-button.show {
-      display: block;
+      display: flex;
+    }
+
+    .hamburger-label {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
     h1 {
@@ -858,11 +1002,6 @@
     }
 
     @media (max-width: 768px) {
-      /* Show hamburger button */
-      .hamburger-button.show {
-        display: block;
-      }
-
       /* Hide workflow carousel on mobile */
       .workflow-container {
         display: none;
@@ -968,40 +1107,18 @@
       }
 
       header {
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 12px;
-        margin-bottom: 20px;
+        padding: 12px 16px;
+        margin-bottom: 16px;
       }
 
-      .hamburger-button.show {
-        display: block;
-        position: relative;
-        order: -1;
-        margin-top: 8px;
+      .hamburger-button {
+        display: none;
       }
 
       .header-logo {
-        width: 60px;
-        height: 60px;
-        flex-shrink: 0;
-      }
-
-      .header-content {
-        text-align: left;
-        flex: 1;
-      }
-
-      header h1 {
-        font-size: 20px;
-        margin: 0;
-        line-height: 1.2;
-      }
-
-      .header-subtitle {
-        font-size: 12px;
-        line-height: 1.3;
+        display: block;
+        width: 50px;
+        height: 50px;
       }
 
       .section {
@@ -1020,6 +1137,27 @@
 
       /* Extra small devices */
     @media (max-width: 480px) {
+      header {
+        padding: 10px 12px;
+      }
+
+      .header-logo {
+        width: 45px;
+        height: 45px;
+      }
+
+      body {
+        padding-bottom: 70px;
+      }
+
+      .bottom-nav-label {
+        font-size: 10px;
+      }
+
+      .bottom-nav-icon {
+        font-size: 18px;
+      }
+
       .workflow-step {
         min-width: 100px;
         flex: 0 0 100px;
@@ -1046,19 +1184,6 @@
 
       .step-name {
         font-size: 12px;
-      }
-
-      header {
-        padding: 12px;
-      }
-
-      .header-logo {
-        width: 60px;
-        height: 60px;
-      }
-
-      header h1 {
-        font-size: 22px;
       }
 
       .form-title {
@@ -1210,16 +1335,11 @@
 <body>
   <div class="container">
     <header>
-      <button class="hamburger-button" id="hamburger-btn" onclick="toggleMobileMenu()">☰</button>
       <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='95' fill='%23F5F5F0' stroke='%232D7A4A' stroke-width='2'/%3E%3Ctext x='100' y='110' font-size='48' font-weight='bold' text-anchor='middle' fill='%238B6239'%3ECigal%3C/text%3E%3C/svg%3E" alt="CIGAL Logo" class="header-logo">
-      <div class="header-content">
-        <h1>Système de Formulaires CIGAL</h1>
-        <p class="header-subtitle">Tous les Points Critiques de Contrôle (CCPs) – Production de Farine Infantile</p>
-      </div>
     </header>
 
-    <!-- Mobile Menu Drawer -->
-    <div class="hamburger-menu" id="mobile-menu">
+    <!-- Mobile Menu Drawer (hidden, kept for compatibility) -->
+    <div class="hamburger-menu" id="mobile-menu" style="display: none;">
       <div class="menu-overlay" onclick="closeMobileMenu()"></div>
       <div class="menu-drawer">
         <div class="menu-header">
@@ -1242,48 +1362,7 @@
       </div>
     </div>
 
-    <!-- Workflow Diagram -->
-    <div class="workflow-container">
-      <div class="workflow-title">📊 Flux de Production</div>
-      <div class="workflow">
-        <div class="workflow-step phase1" onclick="switchTab('ccp1'); updateWorkflowActiveState()">
-          <div class="step-number">1</div>
-          <div class="step-name">Réception</div>
-        </div>
-        <div class="workflow-step phase1" onclick="switchTab('ccp2'); updateWorkflowActiveState()">
-          <div class="step-number">2</div>
-          <div class="step-name">Torréfaction</div>
-        </div>
-        <div class="workflow-step phase1" onclick="switchTab('ccp3'); updateWorkflowActiveState()">
-          <div class="step-number">3</div>
-          <div class="step-name">Refroidissement</div>
-        </div>
-        <div class="workflow-step phase1" onclick="switchTab('ccp4'); updateWorkflowActiveState()">
-          <div class="step-number">4</div>
-          <div class="step-name">Mélange</div>
-        </div>
-        <div class="workflow-step phase3" onclick="switchTab('ccp5'); updateWorkflowActiveState()">
-          <div class="step-number">5</div>
-          <div class="step-name">Mouture</div>
-        </div>
-        <div class="workflow-step phase3" onclick="switchTab('ccp6'); updateWorkflowActiveState()">
-          <div class="step-number">6</div>
-          <div class="step-name">Tamisage</div>
-        </div>
-        <div class="workflow-step phase1" onclick="switchTab('ccp7'); updateWorkflowActiveState()">
-          <div class="step-number">7</div>
-          <div class="step-name">Conditionnement</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Additional Navigation: Dashboard and Suppliers -->
-    <div class="navigation-bar">
-      <button onclick="switchTab('dashboard')">📊 Tableau de Bord</button>
-      <button onclick="switchTab('suppliers')">📋 Fournisseurs</button>
-    </div>
-
-    <!-- Tabs Navigation - Hidden, using workflow steps instead -->
+    <!-- Tabs Navigation - Hidden, using bottom nav instead -->
     <div class="tabs-nav" style="display: none;">
       <button class="tab-button" onclick="switchTab('dashboard')">📊 Tableau de Bord</button>
       <button class="tab-button active" onclick="switchTab('ccp1')">Réception</button>
@@ -3717,6 +3796,122 @@
         console.log('Form updated:', this.name || this.type);
       });
     });
+
+    // Forms submenu functionality
+    function showFormsMenu(button) {
+      const submenu = document.getElementById('forms-submenu');
+      const isOpen = submenu.classList.contains('open');
+
+      // Close submenu if already open
+      if (isOpen) {
+        submenu.classList.remove('open');
+        button.classList.remove('active');
+      } else {
+        // Open submenu
+        submenu.classList.add('open');
+        button.classList.add('active');
+      }
+    }
+
+    function selectForm(ccpId) {
+      const submenu = document.getElementById('forms-submenu');
+      const formsButton = document.querySelector('[data-tab="forms"]');
+
+      // Close submenu
+      submenu.classList.remove('open');
+
+      // Switch to the selected form
+      switchTab(ccpId);
+    }
+
+    // Close forms submenu when clicking outside
+    document.addEventListener('click', function(event) {
+      const submenu = document.getElementById('forms-submenu');
+      const formsButton = document.querySelector('[data-tab="forms"]');
+
+      // Check if click is outside submenu and forms button
+      if (!submenu.contains(event.target) && !formsButton.contains(event.target)) {
+        submenu.classList.remove('open');
+        formsButton.classList.remove('active');
+      }
+    });
+
+    // Update bottom nav active state
+    function updateBottomNavActive(tabId) {
+      document.querySelectorAll('.bottom-nav-item').forEach(item => {
+        item.classList.remove('active');
+      });
+
+      // Check if tabId is a form (ccp1-ccp7)
+      if (tabId && tabId.match(/^ccp[1-7]$/)) {
+        // Highlight the forms button when viewing any form
+        const formsButton = document.querySelector('[data-tab="forms"]');
+        if (formsButton) {
+          formsButton.classList.add('active');
+        }
+      } else {
+        // For other tabs (dashboard, suppliers), highlight their specific button
+        const activeItem = document.querySelector(`[data-tab="${tabId}"]`);
+        if (activeItem) {
+          activeItem.classList.add('active');
+        }
+      }
+    }
+
+    // Hook into switchTab to update bottom nav
+    const originalSwitchTab = switchTab;
+    switchTab = function(tabId) {
+      originalSwitchTab(tabId);
+      updateBottomNavActive(tabId);
+    };
   </script>
+
+  <!-- Forms Submenu -->
+  <div class="forms-submenu" id="forms-submenu">
+    <div class="forms-submenu-item" onclick="selectForm('ccp1')">
+      <div class="forms-submenu-item-icon">📥</div>
+      <div class="forms-submenu-item-text">1. Réception</div>
+    </div>
+    <div class="forms-submenu-item" onclick="selectForm('ccp2')">
+      <div class="forms-submenu-item-icon">🔥</div>
+      <div class="forms-submenu-item-text">2. Torréfaction</div>
+    </div>
+    <div class="forms-submenu-item" onclick="selectForm('ccp3')">
+      <div class="forms-submenu-item-icon">❄️</div>
+      <div class="forms-submenu-item-text">3. Refroidissement</div>
+    </div>
+    <div class="forms-submenu-item" onclick="selectForm('ccp4')">
+      <div class="forms-submenu-item-icon">🥄</div>
+      <div class="forms-submenu-item-text">4. Mélange</div>
+    </div>
+    <div class="forms-submenu-item" onclick="selectForm('ccp5')">
+      <div class="forms-submenu-item-icon">⚙️</div>
+      <div class="forms-submenu-item-text">5. Mouture</div>
+    </div>
+    <div class="forms-submenu-item" onclick="selectForm('ccp6')">
+      <div class="forms-submenu-item-icon">🔍</div>
+      <div class="forms-submenu-item-text">6. Tamisage</div>
+    </div>
+    <div class="forms-submenu-item" onclick="selectForm('ccp7')">
+      <div class="forms-submenu-item-icon">📦</div>
+      <div class="forms-submenu-item-text">7. Conditionnement</div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <button class="bottom-nav-item active" data-tab="dashboard" onclick="switchTab('dashboard')">
+      <div class="bottom-nav-icon">📊</div>
+      <div class="bottom-nav-label">Tableau de bord</div>
+    </button>
+    <button class="bottom-nav-item" data-tab="forms" onclick="showFormsMenu(this)">
+      <div class="bottom-nav-icon">📋</div>
+      <div class="bottom-nav-label">Formulaires</div>
+    </button>
+    <button class="bottom-nav-item" data-tab="suppliers" onclick="switchTab('suppliers')">
+      <div class="bottom-nav-icon">🤝</div>
+      <div class="bottom-nav-label">Fournisseurs</div>
+    </button>
+  </div>
 </body>
 </html>
