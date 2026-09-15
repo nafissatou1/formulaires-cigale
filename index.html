@@ -7,57 +7,57 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <style>
     :root {
-      --bg-primary: #FAFAF8;
-      --bg-secondary: #F0F0EA;
-      --text-primary: #2A2A28;
-      --text-secondary: #666661;
-      --border-color: #E8E8E3;
-      --status-good: #2D7A4A;
-      --status-warning: #B8860B;
-      --status-critical: #8B5A3C;
-      --status-neutral: #666661;
-      --phase1: #2D7A4A;
-      --phase2: #B8860B;
-      --phase3: #5B7C99;
-      --accent-light: #F5F5F0;
-      --accent-dark: #2A2A28;
-      --focus: #4A9E5A;
+      --bg-primary: #F8F9FA;
+      --bg-secondary: #F0F4F8;
+      --text-primary: #1A1A1A;
+      --text-secondary: #64748B;
+      --border-color: #E2E8F0;
+      --status-good: #577e0a;
+      --status-warning: #64748B;
+      --status-critical: #577e0a;
+      --status-neutral: #64748B;
+      --phase1: #577e0a;
+      --phase2: #64748B;
+      --phase3: #577e0a;
+      --accent-light: #F8F9FA;
+      --accent-dark: #1A1A1A;
+      --focus: #577e0a;
     }
 
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) {
-        --bg-primary: #1A1918;
-        --bg-secondary: #2A2925;
-        --text-primary: #F5F5F0;
-        --text-secondary: #B8B8B0;
-        --border-color: #3A3930;
-        --status-good: #5FB876;
-        --status-warning: #D4A041;
-        --status-critical: #B8755A;
-        --phase1: #5FB876;
-        --phase2: #D4A041;
-        --phase3: #7BA3C8;
-        --accent-light: #2A2925;
-        --accent-dark: #F5F5F0;
-        --focus: #4FCF68;
+        --bg-primary: #111827;
+        --bg-secondary: #1F2937;
+        --text-primary: #F3F4F6;
+        --text-secondary: #9CA3AF;
+        --border-color: #374151;
+        --status-good: #7fb50a;
+        --status-warning: #9CA3AF;
+        --status-critical: #7fb50a;
+        --phase1: #7fb50a;
+        --phase2: #9CA3AF;
+        --phase3: #7fb50a;
+        --accent-light: #1F2937;
+        --accent-dark: #F3F4F6;
+        --focus: #7fb50a;
       }
     }
 
     [data-theme="dark"] {
-      --bg-primary: #1A1918;
-      --bg-secondary: #2A2925;
-      --text-primary: #F5F5F0;
-      --text-secondary: #B8B8B0;
-      --border-color: #3A3930;
-      --status-good: #5FB876;
-      --status-warning: #D4A041;
-      --status-critical: #B8755A;
-      --phase1: #5FB876;
-      --phase2: #D4A041;
-      --phase3: #7BA3C8;
-      --accent-light: #2A2925;
-      --accent-dark: #F5F5F0;
-      --focus: #4FCF68;
+      --bg-primary: #111827;
+      --bg-secondary: #1F2937;
+      --text-primary: #F3F4F6;
+      --text-secondary: #9CA3AF;
+      --border-color: #374151;
+      --status-good: #7fb50a;
+      --status-warning: #9CA3AF;
+      --status-critical: #7fb50a;
+      --phase1: #7fb50a;
+      --phase2: #9CA3AF;
+      --phase3: #7fb50a;
+      --accent-light: #1F2937;
+      --accent-dark: #F3F4F6;
+      --focus: #7fb50a;
     }
 
     * {
@@ -84,13 +84,13 @@
       margin-bottom: 32px;
       text-align: center;
       padding: 24px;
-      background: linear-gradient(135deg, #2D7A4A 0%, #1F5A38 100%);
+      background: linear-gradient(135deg, #577e0a 0%, #466206 100%);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 20px;
-      box-shadow: 0 4px 12px rgba(45, 122, 74, 0.15);
+      box-shadow: 0 4px 12px rgba(87, 126, 10, 0.15);
     }
 
     .header-logo {
@@ -133,7 +133,7 @@
     .workflow-container {
       margin: 32px 0;
       padding: 24px;
-      background: linear-gradient(to bottom, rgba(45, 122, 74, 0.05), rgba(91, 124, 153, 0.05));
+      background: linear-gradient(to bottom, rgba(87, 126, 10, 0.05), rgba(87, 126, 10, 0.03));
       border-radius: 12px;
       border: 2px solid var(--phase1);
     }
@@ -172,9 +172,20 @@
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
 
+    .workflow-step.active {
+      background: var(--phase1);
+      color: white;
+      border-color: var(--phase1);
+    }
+
+    .workflow-step.active .step-number,
+    .workflow-step.active .step-name {
+      color: white;
+    }
+
     .workflow-step:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 16px rgba(45, 122, 74, 0.12);
+      box-shadow: 0 8px 16px rgba(87, 126, 10, 0.12);
       border-color: var(--phase1);
     }
 
@@ -218,7 +229,7 @@
     }
 
     .status-ready {
-      background: rgba(45, 122, 74, 0.15);
+      background: rgba(87, 126, 10, 0.15);
       color: var(--phase1);
     }
 
@@ -228,7 +239,7 @@
     }
 
     .status-future {
-      background: rgba(91, 124, 153, 0.15);
+      background: rgba(87, 126, 10, 0.15);
       color: var(--phase3);
     }
 
@@ -258,7 +269,7 @@
 
     .tab-button:hover {
       color: var(--phase1);
-      background: rgba(45, 122, 74, 0.05);
+      background: rgba(87, 126, 10, 0.05);
     }
 
     .tab-button.active {
@@ -279,6 +290,7 @@
     /* Form Sections */
     .form-container {
       max-width: 700px;
+      margin: 0 auto;
     }
 
     .form-header {
@@ -370,7 +382,7 @@
     textarea:focus {
       outline: none;
       border-color: var(--phase1);
-      box-shadow: 0 0 0 4px rgba(45, 122, 74, 0.1);
+      box-shadow: 0 0 0 4px rgba(87, 126, 10, 0.1);
     }
 
     .two-column {
@@ -419,7 +431,7 @@
     }
 
     .phase1-badge {
-      background: rgba(45, 122, 74, 0.15);
+      background: rgba(87, 126, 10, 0.15);
       color: var(--phase1);
     }
 
@@ -429,7 +441,7 @@
     }
 
     .phase3-badge {
-      background: rgba(91, 124, 153, 0.15);
+      background: rgba(87, 126, 10, 0.15);
       color: var(--phase3);
     }
 
@@ -492,7 +504,7 @@
 
     .section-collapsible:hover {
       border-color: var(--phase1);
-      box-shadow: 0 4px 12px rgba(45, 122, 74, 0.08);
+      box-shadow: 0 4px 12px rgba(87, 126, 10, 0.08);
     }
 
     .section-header {
@@ -559,7 +571,7 @@
     .form-group.has-success input,
     .form-group.has-success select {
       border-color: var(--phase1);
-      background: rgba(45, 122, 74, 0.05);
+      background: rgba(87, 126, 10, 0.05);
     }
 
     .validation-message {
@@ -606,7 +618,7 @@
     .decision-card:hover {
       border-color: var(--phase1);
       transform: translateY(-4px);
-      box-shadow: 0 8px 16px rgba(45, 122, 74, 0.12);
+      box-shadow: 0 8px 16px rgba(87, 126, 10, 0.12);
     }
 
     .decision-card input[type="radio"] {
@@ -691,43 +703,77 @@
     .section-collapsible.always-visible {
       border-width: 2px;
       border-color: var(--phase1);
-      background: rgba(45, 122, 74, 0.05);
+      background: rgba(87, 126, 10, 0.05);
     }
 
     .section-collapsible.always-visible .section-header {
-      background: rgba(45, 122, 74, 0.1);
+      background: rgba(87, 126, 10, 0.1);
     }
 
     @media (max-width: 768px) {
+      .container {
+        padding: 12px;
+      }
+
       .decision-cards {
         grid-template-columns: 1fr;
       }
 
       .workflow {
         flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      .workflow-step {
+        min-width: 100%;
+        flex: 0 0 calc(50% - 6px);
+        padding: 16px;
+        min-height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .step-number {
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .step-name {
+        font-size: 14px;
+        font-weight: 600;
+        margin-top: 4px;
+      }
+
+      .workflow-container {
+        padding: 16px;
+        margin: 20px 0;
+      }
+
+      .workflow-title {
+        font-size: 16px;
+        margin-bottom: 16px;
       }
 
       .two-column {
         grid-template-columns: 1fr;
       }
 
-      .tabs-nav {
-        flex-wrap: wrap;
-      }
-
       h1 {
-        font-size: 24px;
+        font-size: 26px;
       }
 
       header {
         flex-direction: column;
-        gap: 16px;
-        text-align: center;
+        gap: 12px;
+        padding: 16px;
+        margin-bottom: 20px;
       }
 
       .header-logo {
-        width: 60px;
-        height: 60px;
+        width: 70px;
+        height: 70px;
       }
 
       .header-content {
@@ -735,50 +781,181 @@
       }
 
       header h1 {
-        font-size: 24px;
+        font-size: 26px;
+        margin: 0;
+      }
+
+      .header-subtitle {
+        font-size: 14px;
       }
 
       .section {
         padding: 16px;
+        margin-bottom: 16px;
+      }
+
+      .section-title {
+        font-size: 18px;
+        margin-bottom: 12px;
       }
 
       .form-container {
         max-width: 100%;
       }
 
-      input[type="text"],
-      input[type="date"],
-      input[type="number"],
-      select,
-      textarea {
-        min-height: 44px;
-        font-size: 16px;
-      }
-
-      .tab-button {
-        padding: 10px 12px;
-        font-size: 12px;
-      }
-
+      /* Extra small devices */
+    @media (max-width: 480px) {
       .workflow-step {
-        min-width: 120px;
+        min-width: 100%;
+        flex: 1 1 100%;
+      }
+
+      header {
         padding: 12px;
       }
 
-      .step-number {
-        font-size: 20px;
+      .header-logo {
+        width: 60px;
+        height: 60px;
       }
 
-      .step-name {
-        font-size: 11px;
+      header h1 {
+        font-size: 22px;
+      }
+
+      .form-title {
+        font-size: 22px;
+      }
+
+      .form-description {
+        font-size: 13px;
       }
 
       .section-title {
         font-size: 16px;
       }
+    }
 
-      .form-title {
-        font-size: 22px;
+    .form-title {
+        font-size: 24px;
+        margin-bottom: 8px;
+      }
+
+      .form-description {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .form-header {
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 16px;
+      }
+
+      .form-group label {
+        font-size: 14px;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      input[type="text"],
+      input[type="date"],
+      input[type="number"],
+      input[type="email"],
+      select,
+      textarea {
+        min-height: 48px;
+        font-size: 16px;
+        padding: 12px;
+        width: 100%;
+      }
+
+      textarea {
+        min-height: 120px;
+      }
+
+      .checkbox-item {
+        padding: 12px 0;
+        font-size: 15px;
+      }
+
+      .checkbox-item input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+
+      .tab-button {
+        padding: 12px 16px;
+        font-size: 14px;
+      }
+
+      .form-progress {
+        margin-bottom: 20px;
+      }
+
+      .progress-text {
+        font-size: 14px;
+      }
+
+      .section-header {
+        padding: 14px;
+      }
+
+      .section-header-title {
+        font-size: 15px;
+      }
+
+      .decision-card {
+        padding: 16px;
+        border-radius: 8px;
+      }
+
+      .card-icon {
+        font-size: 28px;
+        margin-bottom: 8px;
+      }
+
+      .card-label {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+
+      .card-description {
+        font-size: 13px;
+      }
+
+      /* Navigation buttons mobile */
+      > div[style*="display: flex; gap: 12px"] {
+        flex-direction: column;
+        margin: 16px 0;
+      }
+
+      > div[style*="display: flex; gap: 12px"] button {
+        width: 100%;
+        padding: 14px 16px !important;
+        font-size: 15px !important;
+      }
+
+      .info-box {
+        padding: 14px;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      /* Table responsive */
+      table {
+        font-size: 13px;
+      }
+
+      table th,
+      table td {
+        padding: 10px;
       }
     }
   </style>
@@ -797,39 +974,45 @@
     <div class="workflow-container">
       <div class="workflow-title">📊 Flux de Production</div>
       <div class="workflow">
-        <div class="workflow-step phase1" >
+        <div class="workflow-step phase1" onclick="switchTab('ccp1'); updateWorkflowActiveState()">
           <div class="step-number">1</div>
           <div class="step-name">Réception</div>
         </div>
-        <div class="workflow-step phase1" >
+        <div class="workflow-step phase1" onclick="switchTab('ccp2'); updateWorkflowActiveState()">
           <div class="step-number">2</div>
           <div class="step-name">Torréfaction</div>
         </div>
-        <div class="workflow-step phase1" >
+        <div class="workflow-step phase1" onclick="switchTab('ccp3'); updateWorkflowActiveState()">
           <div class="step-number">3</div>
           <div class="step-name">Refroidissement</div>
         </div>
-        <div class="workflow-step phase1" >
+        <div class="workflow-step phase1" onclick="switchTab('ccp4'); updateWorkflowActiveState()">
           <div class="step-number">4</div>
           <div class="step-name">Mélange</div>
         </div>
-        <div class="workflow-step phase3" >
+        <div class="workflow-step phase3" onclick="switchTab('ccp5'); updateWorkflowActiveState()">
           <div class="step-number">5</div>
           <div class="step-name">Mouture</div>
         </div>
-        <div class="workflow-step phase3" >
+        <div class="workflow-step phase3" onclick="switchTab('ccp6'); updateWorkflowActiveState()">
           <div class="step-number">6</div>
           <div class="step-name">Tamisage</div>
         </div>
-        <div class="workflow-step phase1" >
+        <div class="workflow-step phase1" onclick="switchTab('ccp7'); updateWorkflowActiveState()">
           <div class="step-number">7</div>
           <div class="step-name">Conditionnement</div>
         </div>
       </div>
     </div>
 
-    <!-- Tabs Navigation -->
-    <div class="tabs-nav">
+    <!-- Additional Navigation: Dashboard and Suppliers -->
+    <div style="display: flex; gap: 12px; justify-content: center; margin-top: 24px; margin-bottom: 24px;">
+      <button onclick="switchTab('dashboard')" style="padding: 10px 20px; background: var(--phase1); color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; font-size: 14px;">📊 Tableau de Bord</button>
+      <button onclick="switchTab('suppliers')" style="padding: 10px 20px; background: var(--phase1); color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; font-size: 14px;">📋 Fournisseurs</button>
+    </div>
+
+    <!-- Tabs Navigation - Hidden, using workflow steps instead -->
+    <div class="tabs-nav" style="display: none;">
       <button class="tab-button" onclick="switchTab('dashboard')">📊 Tableau de Bord</button>
       <button class="tab-button active" onclick="switchTab('ccp1')">Réception</button>
       <button class="tab-button" onclick="switchTab('suppliers')">📋 Fournisseurs</button>
@@ -856,58 +1039,58 @@
 
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 24px;">
             <!-- CCP1 Status Card -->
-            <div id="ccp1-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #2D7A4A; text-align: center;">
+            <div id="ccp1-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #577e0a; text-align: center;">
               <div style="font-size: 24px; margin-bottom: 8px;">📦</div>
               <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px;">Réception</div>
-              <div style="font-size: 13px; font-weight: 700; color: #2D7A4A;">● EN LIGNE</div>
+              <div style="font-size: 13px; font-weight: 700; color: #577e0a;">● EN LIGNE</div>
               <div style="font-size: 11px; color: var(--text-secondary); margin-top: 8px;" id="ccp1-last-submission">--</div>
             </div>
 
             <!-- CCP2 Status Card -->
-            <div id="ccp2-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #2D7A4A; text-align: center; cursor: pointer;" >
+            <div id="ccp2-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #577e0a; text-align: center; cursor: pointer;" >
               <div style="font-size: 24px; margin-bottom: 8px;">🔥</div>
               <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px;">Torréfaction</div>
-              <div style="font-size: 13px; font-weight: 700; color: #2D7A4A;">● EN LIGNE</div>
+              <div style="font-size: 13px; font-weight: 700; color: #577e0a;">● EN LIGNE</div>
               <div style="font-size: 11px; color: var(--text-secondary); margin-top: 8px;" id="ccp2-last-submission">--</div>
             </div>
 
             <!-- CCP3 Status Card -->
-            <div id="ccp3-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #2D7A4A; text-align: center; cursor: pointer;" >
+            <div id="ccp3-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #577e0a; text-align: center; cursor: pointer;" >
               <div style="font-size: 24px; margin-bottom: 8px;">❄️</div>
               <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px;">Refroidissement</div>
-              <div style="font-size: 13px; font-weight: 700; color: #2D7A4A;">● EN LIGNE</div>
+              <div style="font-size: 13px; font-weight: 700; color: #577e0a;">● EN LIGNE</div>
               <div style="font-size: 11px; color: var(--text-secondary); margin-top: 8px;" id="ccp3-last-submission">--</div>
             </div>
 
             <!-- CCP4 Status Card -->
-            <div id="ccp4-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #2D7A4A; text-align: center; cursor: pointer;" >
+            <div id="ccp4-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #577e0a; text-align: center; cursor: pointer;" >
               <div style="font-size: 24px; margin-bottom: 8px;">🥄</div>
               <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px;">Mélange</div>
-              <div style="font-size: 13px; font-weight: 700; color: #2D7A4A;">● EN LIGNE</div>
+              <div style="font-size: 13px; font-weight: 700; color: #577e0a;">● EN LIGNE</div>
               <div style="font-size: 11px; color: var(--text-secondary); margin-top: 8px;" id="ccp4-last-submission">--</div>
             </div>
 
             <!-- CCP5 Status Card -->
-            <div id="ccp5-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #B8860B; text-align: center; cursor: pointer;" >
+            <div id="ccp5-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #64748B; text-align: center; cursor: pointer;" >
               <div style="font-size: 24px; margin-bottom: 8px;">⚙️</div>
               <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px;">Mouture</div>
-              <div style="font-size: 13px; font-weight: 700; color: #B8860B;">● PRÊT</div>
+              <div style="font-size: 13px; font-weight: 700; color: #64748B;">● PRÊT</div>
               <div style="font-size: 11px; color: var(--text-secondary); margin-top: 8px;">Phase 1</div>
             </div>
 
             <!-- CCP6 Status Card -->
-            <div id="ccp6-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #B8860B; text-align: center; cursor: pointer;" >
+            <div id="ccp6-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #64748B; text-align: center; cursor: pointer;" >
               <div style="font-size: 24px; margin-bottom: 8px;">🔍</div>
               <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px;">Tamisage</div>
-              <div style="font-size: 13px; font-weight: 700; color: #B8860B;">● PRÊT</div>
+              <div style="font-size: 13px; font-weight: 700; color: #64748B;">● PRÊT</div>
               <div style="font-size: 11px; color: var(--text-secondary); margin-top: 8px;">Phase 1</div>
             </div>
 
             <!-- CCP7 Status Card -->
-            <div id="ccp7-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #2D7A4A; text-align: center; cursor: pointer;" >
+            <div id="ccp7-status-card" style="padding: 16px; border-radius: 8px; background: var(--accent-light); border: 2px solid #577e0a; text-align: center; cursor: pointer;" >
               <div style="font-size: 24px; margin-bottom: 8px;">📮</div>
               <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px;">Conditionnement</div>
-              <div style="font-size: 13px; font-weight: 700; color: #2D7A4A;">● EN LIGNE</div>
+              <div style="font-size: 13px; font-weight: 700; color: #577e0a;">● EN LIGNE</div>
               <div style="font-size: 11px; color: var(--text-secondary); margin-top: 8px;" id="ccp7-last-submission">--</div>
             </div>
           </div>
@@ -934,10 +1117,10 @@
             <div>
               <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                 <span style="font-size: 13px; font-weight: 600;">CCP1 – Réception</span>
-                <span style="font-size: 13px; font-weight: 700; color: #2D7A4A;" id="ccp1-perf-pct">--</span>
+                <span style="font-size: 13px; font-weight: 700; color: #577e0a;" id="ccp1-perf-pct">--</span>
               </div>
               <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
-                <div id="ccp1-perf-bar" style="height: 100%; background: #2D7A4A; width: 0%; transition: width 0.3s ease;"></div>
+                <div id="ccp1-perf-bar" style="height: 100%; background: #577e0a; width: 0%; transition: width 0.3s ease;"></div>
               </div>
               <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;" id="ccp1-perf-text">Aucune donnée</div>
             </div>
@@ -946,10 +1129,10 @@
             <div>
               <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                 <span style="font-size: 13px; font-weight: 600;">CCP2 – Torréfaction</span>
-                <span style="font-size: 13px; font-weight: 700; color: #2D7A4A;" id="ccp2-perf-pct">--</span>
+                <span style="font-size: 13px; font-weight: 700; color: #577e0a;" id="ccp2-perf-pct">--</span>
               </div>
               <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
-                <div id="ccp2-perf-bar" style="height: 100%; background: #2D7A4A; width: 0%; transition: width 0.3s ease;"></div>
+                <div id="ccp2-perf-bar" style="height: 100%; background: #577e0a; width: 0%; transition: width 0.3s ease;"></div>
               </div>
               <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;" id="ccp2-perf-text">Aucune donnée</div>
             </div>
@@ -958,10 +1141,10 @@
             <div>
               <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                 <span style="font-size: 13px; font-weight: 600;">CCP3 – Refroidissement</span>
-                <span style="font-size: 13px; font-weight: 700; color: #2D7A4A;" id="ccp3-perf-pct">--</span>
+                <span style="font-size: 13px; font-weight: 700; color: #577e0a;" id="ccp3-perf-pct">--</span>
               </div>
               <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
-                <div id="ccp3-perf-bar" style="height: 100%; background: #2D7A4A; width: 0%; transition: width 0.3s ease;"></div>
+                <div id="ccp3-perf-bar" style="height: 100%; background: #577e0a; width: 0%; transition: width 0.3s ease;"></div>
               </div>
               <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;" id="ccp3-perf-text">Aucune donnée</div>
             </div>
@@ -970,10 +1153,10 @@
             <div>
               <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                 <span style="font-size: 13px; font-weight: 600;">CCP4 – Mélange</span>
-                <span style="font-size: 13px; font-weight: 700; color: #2D7A4A;" id="ccp4-perf-pct">--</span>
+                <span style="font-size: 13px; font-weight: 700; color: #577e0a;" id="ccp4-perf-pct">--</span>
               </div>
               <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
-                <div id="ccp4-perf-bar" style="height: 100%; background: #2D7A4A; width: 0%; transition: width 0.3s ease;"></div>
+                <div id="ccp4-perf-bar" style="height: 100%; background: #577e0a; width: 0%; transition: width 0.3s ease;"></div>
               </div>
               <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;" id="ccp4-perf-text">Aucune donnée</div>
             </div>
@@ -982,10 +1165,10 @@
             <div>
               <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                 <span style="font-size: 13px; font-weight: 600;">CCP7 – Conditionnement</span>
-                <span style="font-size: 13px; font-weight: 700; color: #2D7A4A;" id="ccp7-perf-pct">--</span>
+                <span style="font-size: 13px; font-weight: 700; color: #577e0a;" id="ccp7-perf-pct">--</span>
               </div>
               <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
-                <div id="ccp7-perf-bar" style="height: 100%; background: #2D7A4A; width: 0%; transition: width 0.3s ease;"></div>
+                <div id="ccp7-perf-bar" style="height: 100%; background: #577e0a; width: 0%; transition: width 0.3s ease;"></div>
               </div>
               <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;" id="ccp7-perf-text">Aucune donnée</div>
             </div>
@@ -994,10 +1177,10 @@
             <div>
               <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                 <span style="font-size: 13px; font-weight: 600;">Conformité Globale</span>
-                <span style="font-size: 13px; font-weight: 700; color: #2D7A4A;" id="overall-perf-pct">--</span>
+                <span style="font-size: 13px; font-weight: 700; color: #577e0a;" id="overall-perf-pct">--</span>
               </div>
               <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
-                <div id="overall-perf-bar" style="height: 100%; background: #2D7A4A; width: 0%; transition: width 0.3s ease;"></div>
+                <div id="overall-perf-bar" style="height: 100%; background: #577e0a; width: 0%; transition: width 0.3s ease;"></div>
               </div>
               <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;" id="overall-perf-text">Aucune donnée</div>
             </div>
@@ -2244,8 +2427,33 @@
       // Highlight active button
       document.querySelector(`[onclick="switchTab('${tabId}')"]`).classList.add('active');
 
+      // Update workflow step highlighting
+      updateWorkflowActiveState(tabId);
+
       // Scroll to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateWorkflowActiveState(tabId) {
+      // Remove active class from all workflow steps
+      document.querySelectorAll('.workflow-step').forEach(el => el.classList.remove('active'));
+
+      // Map tab IDs to workflow step indices
+      const stepMap = {
+        'ccp1': 0,
+        'ccp2': 1,
+        'ccp3': 2,
+        'ccp4': 3,
+        'ccp5': 4,
+        'ccp6': 5,
+        'ccp7': 6
+      };
+
+      // Add active class to the corresponding step
+      if (stepMap.hasOwnProperty(tabId)) {
+        const steps = document.querySelectorAll('.workflow-step');
+        steps[stepMap[tabId]].classList.add('active');
+      }
     }
 
     // Conditional display: Show pot controls only when "Pots en plastique" is selected in CCP1
@@ -2933,7 +3141,7 @@
         if (!statusCard) return;
 
         const m = metrics[ccp];
-        let statusColor = '#2D7A4A'; // Green - good
+        let statusColor = '#577e0a'; // Green - good
         let statusText = '● EN LIGNE';
 
         if (m.total > 0) {
@@ -2942,7 +3150,7 @@
             statusColor = '#B84C4C'; // Red - problem
             statusText = '● ATTENTION';
           } else if (conformityRate < 95) {
-            statusColor = '#B8860B'; // Amber - caution
+            statusColor = '#64748B'; // Amber - caution
             statusText = '● À VÉRIFIER';
           }
         }
@@ -2964,14 +3172,14 @@
         if (alertedSubmissions.length > 0) {
           const recentAlerts = alertedSubmissions.slice(-3).reverse();
           criticalAlertsEl.innerHTML = recentAlerts.map(alert => `
-            <div style="padding: 12px 16px; background: ${alert.decision.includes('REJET') ? 'rgba(184, 76, 76, 0.1)' : 'rgba(184, 134, 11, 0.1)'}; border-left: 4px solid ${alert.decision.includes('REJET') ? '#B84C4C' : '#B8860B'}; border-radius: 4px;">
-              <div style="font-weight: 600; color: ${alert.decision.includes('REJET') ? '#B84C4C' : '#B8860B'}; font-size: 13px;">✗ ${ccpNames[alert.ccp]} - ${alert.decision}</div>
+            <div style="padding: 12px 16px; background: ${alert.decision.includes('REJET') ? 'rgba(184, 76, 76, 0.1)' : 'rgba(184, 134, 11, 0.1)'}; border-left: 4px solid ${alert.decision.includes('REJET') ? '#B84C4C' : '#64748B'}; border-radius: 4px;">
+              <div style="font-weight: 600; color: ${alert.decision.includes('REJET') ? '#B84C4C' : '#64748B'}; font-size: 13px;">✗ ${ccpNames[alert.ccp]} - ${alert.decision}</div>
               <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Fournisseur: ${alert.supplier || '-'} | Produit: ${alert.product || '-'}</div>
             </div>
           `).join('');
         } else {
-          criticalAlertsEl.innerHTML = `<div style="padding: 12px 16px; background: rgba(45, 122, 74, 0.1); border-left: 4px solid #2D7A4A; border-radius: 4px;">
-            <div style="font-weight: 600; color: #2D7A4A; font-size: 13px;">✓ Aucune alerte critique</div>
+          criticalAlertsEl.innerHTML = `<div style="padding: 12px 16px; background: rgba(87, 126, 10, 0.1); border-left: 4px solid #577e0a; border-radius: 4px;">
+            <div style="font-weight: 600; color: #577e0a; font-size: 13px;">✓ Aucune alerte critique</div>
             <div style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">Tous les lots en conformité. Bonne qualité!</div>
           </div>`;
         }
@@ -3036,7 +3244,7 @@
 
         supplierReliabilityEl.innerHTML = Object.entries(supplierStats).map(([supplierName, stats]) => {
           const reliability = Math.round((stats.accepted / stats.total) * 100);
-          const statusColor = reliability >= 95 ? '#2D7A4A' : reliability >= 80 ? '#B8860B' : '#B84C4C';
+          const statusColor = reliability >= 95 ? '#577e0a' : reliability >= 80 ? '#64748B' : '#B84C4C';
           const statusBadge = reliability >= 95 ? '✓ Fiable' : reliability >= 80 ? '⚠️ À Surveiller' : '✗ Problème';
           return `
             <div style="padding: 12px; background: var(--accent-light); border-radius: 8px; border-left: 4px solid ${statusColor};">
