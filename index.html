@@ -114,6 +114,128 @@
       font-weight: 500;
     }
 
+    /* Mobile Hamburger Menu */
+    .hamburger-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1000;
+    }
+
+    .hamburger-menu.open {
+      display: block;
+    }
+
+    .menu-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    .menu-drawer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 280px;
+      height: 100vh;
+      background: var(--bg-primary);
+      z-index: 2;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      overflow-y: auto;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .hamburger-menu.open .menu-drawer {
+      transform: translateX(0);
+    }
+
+    .menu-header {
+      padding: 16px;
+      border-bottom: 2px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .menu-header h2 {
+      font-size: 18px;
+      margin: 0;
+      color: var(--text-primary);
+    }
+
+    .menu-close {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--text-primary);
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-items {
+      padding: 8px 0;
+    }
+
+    .menu-item {
+      padding: 14px 16px;
+      display: block;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      font-size: 15px;
+      color: var(--text-primary);
+      width: 100%;
+      transition: background 0.2s;
+      border-left: 4px solid transparent;
+    }
+
+    .menu-item:hover,
+    .menu-item:active {
+      background: rgba(87, 126, 10, 0.1);
+    }
+
+    .menu-item.active {
+      background: rgba(87, 126, 10, 0.15);
+      border-left-color: var(--phase1);
+      font-weight: 600;
+      color: var(--phase1);
+    }
+
+    .menu-divider {
+      height: 1px;
+      background: var(--border-color);
+      margin: 8px 0;
+    }
+
+    .hamburger-button {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: white;
+      padding: 8px;
+      z-index: 10;
+    }
+
+    .hamburger-button.show {
+      display: block;
+    }
+
     h1 {
       font-size: 36px;
       font-weight: 700;
@@ -136,6 +258,31 @@
       background: linear-gradient(to bottom, rgba(87, 126, 10, 0.05), rgba(87, 126, 10, 0.03));
       border-radius: 12px;
       border: 2px solid var(--phase1);
+    }
+
+    .navigation-bar {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+
+    .navigation-bar button {
+      padding: 10px 20px;
+      background: var(--phase1);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .navigation-bar button:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(87, 126, 10, 0.2);
     }
 
     .workflow-title {
@@ -711,6 +858,21 @@
     }
 
     @media (max-width: 768px) {
+      /* Show hamburger button */
+      .hamburger-button.show {
+        display: block;
+      }
+
+      /* Hide workflow carousel on mobile */
+      .workflow-container {
+        display: none;
+      }
+
+      /* Hide Dashboard/Suppliers buttons on mobile */
+      > div[style*="display: flex; gap: 12px"] {
+        display: none !important;
+      }
+
       .container {
         padding: 12px;
       }
@@ -720,40 +882,81 @@
       }
 
       .workflow {
-        flex-wrap: wrap;
-        gap: 12px;
-        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 8px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 8px;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .workflow::-webkit-scrollbar {
+        height: 4px;
+      }
+
+      .workflow::-webkit-scrollbar-track {
+        background: rgba(87, 126, 10, 0.05);
+        border-radius: 4px;
+      }
+
+      .workflow::-webkit-scrollbar-thumb {
+        background: rgba(87, 126, 10, 0.2);
+        border-radius: 4px;
       }
 
       .workflow-step {
-        min-width: 100%;
-        flex: 0 0 calc(50% - 6px);
-        padding: 16px;
-        min-height: 80px;
+        min-width: 110px;
+        flex: 0 0 110px;
+        padding: 12px;
+        min-height: 90px;
         display: flex;
         flex-direction: column;
         justify-content: center;
       }
 
       .step-number {
-        font-size: 24px;
+        font-size: 22px;
         font-weight: 700;
       }
 
       .step-name {
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 600;
-        margin-top: 4px;
+        margin-top: 3px;
+      }
+
+      .navigation-bar {
+        position: sticky;
+        top: auto;
+        z-index: 99;
+        margin: 0;
+        padding: 8px 12px;
+        gap: 8px;
+        background: white;
+        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .navigation-bar button {
+        flex: 1;
+        padding: 10px 12px !important;
+        font-size: 13px !important;
       }
 
       .workflow-container {
-        padding: 16px;
-        margin: 20px 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        padding: 12px 16px;
+        margin: 0;
+        border-radius: 0;
+        background: linear-gradient(to bottom, rgba(87, 126, 10, 0.05), rgba(87, 126, 10, 0.03));
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
 
       .workflow-title {
-        font-size: 16px;
-        margin-bottom: 16px;
+        font-size: 14px;
+        margin-bottom: 12px;
       }
 
       .two-column {
@@ -765,28 +968,40 @@
       }
 
       header {
-        flex-direction: column;
+        flex-direction: row;
+        align-items: flex-start;
         gap: 12px;
-        padding: 16px;
+        padding: 12px;
         margin-bottom: 20px;
       }
 
+      .hamburger-button.show {
+        display: block;
+        position: relative;
+        order: -1;
+        margin-top: 8px;
+      }
+
       .header-logo {
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
       }
 
       .header-content {
-        text-align: center;
+        text-align: left;
+        flex: 1;
       }
 
       header h1 {
-        font-size: 26px;
+        font-size: 20px;
         margin: 0;
+        line-height: 1.2;
       }
 
       .header-subtitle {
-        font-size: 14px;
+        font-size: 12px;
+        line-height: 1.3;
       }
 
       .section {
@@ -806,8 +1021,31 @@
       /* Extra small devices */
     @media (max-width: 480px) {
       .workflow-step {
-        min-width: 100%;
-        flex: 1 1 100%;
+        min-width: 100px;
+        flex: 0 0 100px;
+        padding: 10px;
+        min-height: 85px;
+      }
+
+      .workflow-container {
+        padding: 10px 12px;
+      }
+
+      .workflow-title {
+        font-size: 13px;
+      }
+
+      .workflow-step {
+        padding: 10px;
+        min-height: 65px;
+      }
+
+      .step-number {
+        font-size: 20px;
+      }
+
+      .step-name {
+        font-size: 12px;
       }
 
       header {
@@ -833,6 +1071,15 @@
 
       .section-title {
         font-size: 16px;
+      }
+
+      .navigation-bar {
+        padding: 6px 8px;
+      }
+
+      .navigation-bar button {
+        padding: 8px 10px !important;
+        font-size: 12px !important;
       }
     }
 
@@ -963,12 +1210,37 @@
 <body>
   <div class="container">
     <header>
+      <button class="hamburger-button" id="hamburger-btn" onclick="toggleMobileMenu()">☰</button>
       <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='95' fill='%23F5F5F0' stroke='%232D7A4A' stroke-width='2'/%3E%3Ctext x='100' y='110' font-size='48' font-weight='bold' text-anchor='middle' fill='%238B6239'%3ECigal%3C/text%3E%3C/svg%3E" alt="CIGAL Logo" class="header-logo">
       <div class="header-content">
         <h1>Système de Formulaires CIGAL</h1>
         <p class="header-subtitle">Tous les Points Critiques de Contrôle (CCPs) – Production de Farine Infantile</p>
       </div>
     </header>
+
+    <!-- Mobile Menu Drawer -->
+    <div class="hamburger-menu" id="mobile-menu">
+      <div class="menu-overlay" onclick="closeMobileMenu()"></div>
+      <div class="menu-drawer">
+        <div class="menu-header">
+          <h2>Navigation</h2>
+          <button class="menu-close" onclick="closeMobileMenu()">✕</button>
+        </div>
+        <div class="menu-items">
+          <button class="menu-item" onclick="switchTab('dashboard'); closeMobileMenu()">📊 Tableau de Bord</button>
+          <div class="menu-divider"></div>
+          <button class="menu-item" onclick="switchTab('ccp1'); closeMobileMenu()">1. Réception</button>
+          <button class="menu-item" onclick="switchTab('ccp2'); closeMobileMenu()">2. Torréfaction</button>
+          <button class="menu-item" onclick="switchTab('ccp3'); closeMobileMenu()">3. Refroidissement</button>
+          <button class="menu-item" onclick="switchTab('ccp4'); closeMobileMenu()">4. Mélange</button>
+          <button class="menu-item" onclick="switchTab('ccp5'); closeMobileMenu()">5. Mouture</button>
+          <button class="menu-item" onclick="switchTab('ccp6'); closeMobileMenu()">6. Tamisage</button>
+          <button class="menu-item" onclick="switchTab('ccp7'); closeMobileMenu()">7. Conditionnement</button>
+          <div class="menu-divider"></div>
+          <button class="menu-item" onclick="switchTab('suppliers'); closeMobileMenu()">📋 Fournisseurs</button>
+        </div>
+      </div>
+    </div>
 
     <!-- Workflow Diagram -->
     <div class="workflow-container">
@@ -1006,9 +1278,9 @@
     </div>
 
     <!-- Additional Navigation: Dashboard and Suppliers -->
-    <div style="display: flex; gap: 12px; justify-content: center; margin-top: 24px; margin-bottom: 24px;">
-      <button onclick="switchTab('dashboard')" style="padding: 10px 20px; background: var(--phase1); color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; font-size: 14px;">📊 Tableau de Bord</button>
-      <button onclick="switchTab('suppliers')" style="padding: 10px 20px; background: var(--phase1); color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; font-size: 14px;">📋 Fournisseurs</button>
+    <div class="navigation-bar">
+      <button onclick="switchTab('dashboard')">📊 Tableau de Bord</button>
+      <button onclick="switchTab('suppliers')">📋 Fournisseurs</button>
     </div>
 
     <!-- Tabs Navigation - Hidden, using workflow steps instead -->
@@ -2416,6 +2688,39 @@
   </div>
 
   <script>
+    // Mobile Menu Functions
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('open');
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.remove('open');
+    }
+
+    // Close menu when pressing Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeMobileMenu();
+      }
+    });
+
+    // Show hamburger button on mobile (on load and resize)
+    function updateHamburgerVisibility() {
+      const hamburgerBtn = document.getElementById('hamburger-btn');
+      if (window.innerWidth <= 768) {
+        hamburgerBtn.classList.add('show');
+      } else {
+        hamburgerBtn.classList.remove('show');
+        closeMobileMenu();
+      }
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', updateHamburgerVisibility);
+    window.addEventListener('resize', updateHamburgerVisibility);
+
     function switchTab(tabId) {
       // Hide all tabs
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
